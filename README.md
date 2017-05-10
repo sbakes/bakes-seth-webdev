@@ -5,5 +5,5 @@ This repository is for cs5610, Web Development at Northeastern University.
 Links:
 	Heroku:https://dashboard.heroku.com/apps/sbakes-cs5610
 	Project:
-	Assignemnt:
+	Assignment:
 
