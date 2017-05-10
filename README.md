@@ -1,8 +1,9 @@
-# web-dev-template
+# bakes-seth-webdev
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+My name is Seth Bakes, I am an undergraduate computer science student at Northeastern University. Done work before on web applications at Cisco Systems.
+This repository is for cs5610, Web Development at Northeastern University.
+Links:
+	Heroku:https://dashboard.heroku.com/apps/sbakes-cs5610
+	Project:
+	Assignemnt:
+
