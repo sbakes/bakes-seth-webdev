@@ -1,10 +1,17 @@
+
 module.exports = function(app)
 {
     app.get("/api/test", findAllMessages);
     app.post("/api/test", createMessage);
     app.delete("/api/test/:id", deleteMessage);
 
-    var connectionString = 'mongodb://127.0.0.1:27017/test';
+    var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
+    if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
+        var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
+        var password = process.env.MLAB_PASSWORD_WEBDEV;
+        connectionString = 'mongodb://' + username + ':' + password;
+        connectionString += '@ds137261.mlab.com:37261/heroku_pfnnhb14'; // user yours
+}
 
     if(process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +
