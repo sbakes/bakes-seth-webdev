@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -16,7 +9,7 @@
             <a class="navbar-brand" href="#">
                 Page List
             </a>
-            <a class="navbar-brand" href="../page/page-list.html">
+            <a class="navbar-brand" href="/user/:userId/website/:websiteId/page">
                 <div class="glyphicon glyphicon-check">
                 </div>
             </a>
@@ -47,7 +40,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-sm-11 col-xs-6">
-                            <a href="../widget/templates/widget--heading.view.client.html">
+                            <a href="#">
                                 Blog
                             </a>
                         </div>
@@ -65,7 +58,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-sm-11 col-xs-6">
-                            <a href="../widget/templates/widget-youtube.view.client.html">
+                            <a href="#">
                                 Youtube
                             </a>
                         </div>
@@ -83,7 +76,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-sm-11 col-xs-6">
-                            <a href="../widget/templates/widget-image.view.client.html">
+                            <a href="#">
                                 App
                             </a>
                         </div>
@@ -110,11 +103,11 @@
             <textarea id="description"
                       rows="5"
                       class="form-control">Blog for my trials as a web developer</textarea>
-            <a href="page-list.html"
+            <a href="#/user/:userId/website/:websiteId/page"
                class="btn btn-block btn-primary">
                 Update
             </a>
-            <a href="page-list.html"
+            <a href="#/user/:userId/website/:websiteId/page"
                class="btn btn-block btn-danger">
                 Delete
             </a>
@@ -125,12 +118,10 @@
     <div class="container">
         <div class="row navbar-text">
             <div class="col-xs-3 text-center">
-                <a href="../user/templates/profile.html">
+                <a href="#/profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
         </div>
     </div>
 </nav>
-</body>
-</html>

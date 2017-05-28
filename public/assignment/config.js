@@ -18,6 +18,11 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
+            .when('/profile', {
+                templateUrl: 'views/user/templates/profile.html',
+                controller: 'profileController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.html',
                 controller: 'profileController',
@@ -38,11 +43,46 @@
                 controller: 'websiteEditController',
                 controllerAs: 'model'
             })
-            // page routing TBD
+            // page routing
+            .when('/user/:userId/website/:websiteId/page', {
+                templateUrl: 'views/page/templates/page-list.view.client.html',
+                controller: 'pageListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/new', {
+                templateUrl: 'views/page/templates/page-new.view.client.html',
+                controller: 'pageNewController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/pageId', {
+                templateUrl: 'views/page/templates/page-edit.view.client.html',
+                controller: 'pageEditController',
+                controllerAs: 'model'
+            })
             // widget routing
             .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
                 templateUrl: 'views/widget/templates/widget-list.view.client.html',
                 controller: 'widgetListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
+                templateUrl: 'views/widget/templates/widget-choose.view.client.html',
+                controller: 'widgetNewController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/edit', {
+                templateUrl: 'views/widget/templates/widget-heading.view.client.html',
+                controller: 'widgetEditController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/youtube', {
+                templateUrl: 'views/widget/templates/widget-youtube.view.client.html',
+                controller: 'widgetYoutubeController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/image', {
+                templateUrl: 'views/widget/templates/widget-image.view.client.html',
+                controller: 'widgetImageController',
                 controllerAs: 'model'
             })
 
