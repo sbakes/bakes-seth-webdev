@@ -2,21 +2,21 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/:userId/website">
+            <a class="navbar-brand" href="#!/user/:userId/website/:websiteId/page">
                 <div class="glyphicon glyphicon-arrow-left">
                 </div>
             </a>
             <a class="navbar-brand" href="#">
-                Edit Websites
+                New Page
             </a>
-            <a class="navbar-brand" href="#!/user/:userId/website">
+            <a class="navbar-brand" href="#!/user/:userId/website/:websiteId/page">
                 <div class="glyphicon glyphicon-check">
                 </div>
             </a>
         </div>
     </div>
 </nav>
-<body>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4 hidden-xs srollable-left">
@@ -24,68 +24,65 @@
                 <li class="list-group-item active">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-sm-11 col-xs-6">
-                            Website Name
+                            Page Name
                         </div>
                         <div class="col-lg-3 visible-lg">
-                            Created
+
                         </div>
                         <div class="col-md-2 hidden-sm  hidden-xs">
-                            Updated
+
                         </div>
                         <div class="col-sm-2 col-xs-6">
 
                         </div>
                     </div>
                 </li>
-                <li ng-repeat="website in model.websites" class="list-group-item">
+
+
+                <li ng-repeat="page in model.pages" class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
                             <a href="#!/user/:userId/website/:websiteId/page">
-                                {{website.name}}
+                                {{page.name}}
                             </a>
                         </div>
                         <div class="col-lg-3 visible-lg">
-                            {{website.created | date}}
+
                         </div>
                         <div class="col-md-3 hidden-sm  hidden-xs">
-                            {{website.updated | date}}
+
                         </div>
                         <div class="col-sm-1">
-                            <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                            <a href="#!/user/{{model.userId}}/page/{{page._id}}">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
                     </div>
                 </li>
-
-
             </ul>
         </div>
-        <div class="col-xs-12 col-sm-8">
+        <div class="form-group col-xs-12 col-sm-8">
             <label for="name">Name</label>
-            <input id="name"
-                   ng-model="model.website.name"
-                   class="form-control"
-                   value="bbc.com"/>
+            <input type="text" ng-model="model.page.name" class="form-control" id="name" placeholder="Name">
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="description"
+                       ng-model="model.page.description"
+                       class="form-control"
+                       id="description"
+                       placeholder="This page is....">
+            </div>
+            <a class="btn btn-primary btn-block"
+               href="#!/user/:userId/website/:websiteId/page">Enter</a>
+            <a href="#!/user/:userId/website/:websiteId/page"
+               class="btn btn-block btn-danger">
+                Cancel
+            </a>
 
-            <label for="description">Description</label>
-            <textarea id="description"
-                      ng-model="model.website.description"
-                      rows="5"
-                      class="form-control">British Broadcast Center news agency</textarea>
-            <a href="#!/user/:userId/website"
-               class="btn btn-block btn-primary"
-               ng-click="model.updateWebsite(website, id)">
-                Update
-            </a>
-            <a href="#!/user/:userId/website"
-               class="btn btn-block btn-danger"
-               ng-click="model.deleteWebsite(website)">
-                Delete
-            </a>
         </div>
     </div>
 </div>
+
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
         <div class="row navbar-text">

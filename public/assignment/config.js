@@ -67,24 +67,38 @@
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
                 templateUrl: 'views/widget/templates/widget-choose.view.client.html',
-                controller: 'widgetNewController',
+                controller: 'widgetListController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/edit', {
                 templateUrl: 'views/widget/templates/widget-heading.view.client.html',
-                controller: 'widgetEditController',
+                controller: 'widgetListController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/youtube', {
                 templateUrl: 'views/widget/templates/widget-youtube.view.client.html',
-                controller: 'widgetYoutubeController',
+                controller: 'widgetListController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/image', {
                 templateUrl: 'views/widget/templates/widget-image.view.client.html',
-                controller: 'widgetImageController',
+                controller: 'widgetListController',
                 controllerAs: 'model'
             })
-
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/image-editor', {
+                templateUrl: 'views/widget/editors/widget-image-editor.view.client.html',
+                controller: 'widgetListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/youtube-editor', {
+                templateUrl: 'views/widget/editors/widget-youtube-editor.view.client.html',
+                controller: 'widgetListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/header-editor', {
+                templateUrl: 'views/widget/editors/widget-heading-editor.view.client.html',
+                controller: 'widgetListController',
+                controllerAs: 'model'
+            })
     }
 })();

@@ -1,13 +1,12 @@
-<!DOCTYPE html>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/profile">
+            <a class="navbar-brand" href="#!/user/:userId/website">
                 <div class="glyphicon glyphicon-arrow-left">
                 </div>
             </a>
-            <a class="navbar-brand" href="#!/user/:userId/website">
-                Website List
+            <a class="navbar-brand" href="#!/user/:userId/website/:websiteId/page">
+                Page List
             </a>
         </div>
     </div>
@@ -18,36 +17,39 @@
         <li class="list-group-item active">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
-                    Website Name
+                    Page Name
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    Created
+
                 </div>
                 <div class="col-md-3 hidden-sm  hidden-xs">
-                    Updated
+
                 </div>
                 <div class="col-sm-1">
-                    <a href="#!/user/{{model.userId}}/website/new" style="color: #fff;">
-                        <span class="glyphicon glyphicon-plus pull-right"></span>
-                    </a>
+                    <div class="col-sm-1">
+                        <a href="#!/user/:userId/website/:websiteId/page/new" style="color: #fff;">
+                            <span class="glyphicon glyphicon-plus pull-right"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </li>
-        <li ng-repeat="website in model.websites" class="list-group-item">
+
+        <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
-                    <a href="#!/user/:userId/website">
-                        {{website.name}}
+                    <a href="#">
+                        {{page.name}}
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    {{website.created | date}}
+
                 </div>
                 <div class="col-md-3 hidden-sm  hidden-xs">
-                    {{website.updated | date}}
+
                 </div>
                 <div class="col-sm-1">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                    <a href="#!/user/{{model.userId}}/page/{{page._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -58,7 +60,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
         <div class="row navbar-text">
-            <div class="col-xs-3 text-right">
+            <div class="col-xs-3 text-center">
                 <a href="#/profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>

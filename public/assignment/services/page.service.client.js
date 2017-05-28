@@ -13,14 +13,15 @@
         ;
 
         return {
-            createUser: createPage,
-            findUserByCredentials: findPageByWebsiteId,
-            findUserById: findPageById,
-            updateUser: updatePage,
-            deleteUser: deletePage
+            createPage: createPage,
+            findPageByCredentials: findPageByWebsiteId,
+            findPageById: findPageById,
+            updatePage: updatePage,
+            deletePage: deletePage,
+            findAllPages: findAllPages
         };
 
-        function createPage(WebsiteId, page) {
+        function createPage(websiteId, page) {
             page._id = (new Date()).getTime() + "";
             pages.push(page);
         }
@@ -31,7 +32,7 @@
             });
         }
 
-        function updatePage(pageId, page) {
+        function updatePage(_id, page) {
             var page = pages.find(function (page) {
                 return page.websiteId === websiteid;
             });
@@ -39,7 +40,7 @@
             pages.update(index, page);
         }
 
-        function deletePage(pageId) {
+        function deletePage(_id) {
             var page = pages.find(function (page) {
                 return page._id === pageId;
             });
@@ -47,10 +48,18 @@
             pages.splice(index, 1);
         }
 
-        function findPageById(pageId) {
+        function findPageById(_id) {
             return pages.find(function (page) {
                 return page._id === pageId;
             });
+        }
+
+        function findAllPages() {
+            var resultSet = [];
+            for(var p in pages) {
+                    resultSet.push(pages[p]);
+            }
+            return resultSet;
         }
     }
 })();
