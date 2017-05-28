@@ -1,65 +1,55 @@
 (function () {
     angular
         .module('WAM')
-        .factory('userService', userService);
+        .factory('pageService', pageService);
 
-    function userService() {
+    function pageService() {
 
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
+        var pages = [
+                { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
+                { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
+                { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
+            ]
+        ;
 
         return {
-            createUser: createUser,
-            findUserByCredentials: findUserByCredentials,
-            findUserById: findUserById,
-            findUserByUsername: findUserByUsername,
-            updateUser: updateUser,
-            deleteUser: deleteUser
+            createUser: createPage,
+            findUserByCredentials: findPageByWebsiteId,
+            findUserById: findPageById,
+            updateUser: updatePage,
+            deleteUser: deletePage
         };
 
-        function createUser(user) {
-            user._id = (new Date()).getTime() + "";
-            users.push(user);
+        function createPage(WebsiteId, page) {
+            page._id = (new Date()).getTime() + "";
+            pages.push(page);
         }
 
-        function findUserByUsername(username) {
-            var user = users.find(function (user) {
-                return user.username === username;
+        function findPageByWebsiteId(websiteId) {
+            var page = pages.find(function (page) {
+                return page.websiteId === websiteid;
             });
-            if(typeof user === 'undefined')
-                return null;
-            return user;
         }
 
-        function updateUser(userId, user) {
-
-        }
-
-        function deleteUser(userId) {
-            var user = users.find(function (user) {
-                return user._id === userId;
+        function updatePage(pageId, page) {
+            var page = pages.find(function (page) {
+                return page.websiteId === websiteid;
             });
-            var index = users.indexOf(user);
-            users.splice(index, 1);
+            var index = page.indexOf(page);
+            pages.update(index, page);
         }
 
-        function findUserByCredentials(username, password) {
-            for(var u in users) {
-                var user = users[u];
-                if(user.username === username && user.password === password) {
-                    return user;
-                }
-            }
-            return null;
+        function deletePage(pageId) {
+            var page = pages.find(function (page) {
+                return page._id === pageId;
+            });
+            var index = pages.indexOf(page);
+            pages.splice(index, 1);
         }
 
-        function findUserById(userId) {
-            return users.find(function (user) {
-                return user._id === userId;
+        function findPageById(pageId) {
+            return pages.find(function (page) {
+                return page._id === pageId;
             });
         }
     }

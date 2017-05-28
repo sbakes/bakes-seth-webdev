@@ -31,7 +31,11 @@
         }
         
         function updateWebsite(websiteId, website) {
-            
+            var website = website.find(function (website) {
+                return website._id === websiteid;
+            });
+            var index = website.indexOf(website);
+            users.update(index, websiteId);
         }
         
         function deleteWebsite(websiteId) {
