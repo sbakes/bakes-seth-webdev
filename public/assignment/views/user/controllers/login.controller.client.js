@@ -5,18 +5,32 @@
     
     function loginController($location, userService) {
 
-        var model = this;
+        var vm = this;
 
-        model.login = function (username, password) {
+        function init() {
+            vm.login = login;
 
-            var found = userService.findUserByCredentials(username, password);
-            
-            if(found !== null) {
-                $location.url('/user/' + found._id);
-                // $scope.message = "Welcome " + username;
-            } else {
-                model.message = "Username " + username + " not found, please try again";
-            }
-        };
-    }
+        }
+        init();
+
+        function login(user) {
+
+            //promise
+            userService
+                .findUserByCredentials(user.username, user.password)
+                .then(function(user) {
+                    if (user !== null) {
+                        $location.url('/user/' + user._id);
+                        $scope.message = "Welcome " + user.username;
+                    } else {
+                        vm.alert = "Username " + user.username + " not found, please try again";
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                    vm.alert = "Error logging in";
+                })
+                };
+        }
+
 })();

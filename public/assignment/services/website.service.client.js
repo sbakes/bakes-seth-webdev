@@ -16,6 +16,7 @@
         ];
 
         return {
+            websites: websites,
             createWebsite: createWebsite,
             findAllWebsitesForUser: findAllWebsitesForUser,
             findWebsiteById: findWebsiteById,

@@ -13,11 +13,18 @@
 
         var model = this;
         model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['webId'];
-        model.pages = pages;
+        //model.pages = pages;
 
         function init() {
-            model.page = pageService.findPageByCredentials(model.webId);
+            //model.page = pageService.findPageByCredentials(model.websiteId);
+            pageService
+                .findAllPages(model.websiteId)
+                .success(function(pages){
+                    model.pages = pages;
+                })
+
         }
         init();
     }

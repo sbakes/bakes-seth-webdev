@@ -15,15 +15,15 @@
                 { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
                     "url": "https://youtu.be/AM2Ivdi9c4E" },
                 { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-            ]
-        ;
+            ];
 
         return {
             createWidget: createWidget,
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            selectPhoto: selectPhoto
         };
 
         function createWidget(pageId, widget) {
@@ -62,5 +62,6 @@
                 return widget._id === widgetId;
             });
         }
+
     }
 })();

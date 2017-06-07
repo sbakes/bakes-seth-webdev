@@ -13,6 +13,7 @@
         ;
 
         return {
+            pages: pages,
             createPage: createPage,
             findPageByCredentials: findPageByWebsiteId,
             findPageById: findPageById,
