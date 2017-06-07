@@ -25,8 +25,7 @@
                     } else {
                         vm.alert = "Username " + user.username + " not found, please try again";
                     }
-                })
-                .catch(function(error) {
+                }, function(error) {
                     console.log(error);
                     vm.alert = "Error logging in";
                 })

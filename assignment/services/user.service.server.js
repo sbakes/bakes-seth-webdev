@@ -1,8 +1,8 @@
-var app = require('../../express.js');
 module.exports = function(app) {
 
     //app.get('/api/assignment/:userId', findUserByCredentials);
     //app.get('/api/assignment/user/:userId', findUserById);
+    //app.get('/api/assignment/user/:userId', findUserByUsername);
     app.get('/api/assignment/user/:userId', findUser);
     app.post('/api/assignment/user', createUser);
     app.put('/api/assignment/user/:userId', updateUser);
@@ -15,6 +15,8 @@ module.exports = function(app) {
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
     ];
 
+    var users = users;
+
     function findUser(req, res) {
         var params = req.params;
         var query = req.query;
@@ -22,6 +24,8 @@ module.exports = function(app) {
             findUserByCredentials(req, res);
         } else if (query.username) {
             findUserByUsername(req, res);
+        } else if (query._id) {
+            findUserById(req, res);
         }
     }
 
@@ -88,4 +92,4 @@ module.exports = function(app) {
         });
         res.send(user);
     }
-}
+};
