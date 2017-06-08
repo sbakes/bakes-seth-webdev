@@ -4,11 +4,10 @@
         .service('flickrService', flickrService);
     
     function flickrService($http) {
-
         this.searchPhotos = searchPhotos;
 
-        var key = "95a749a852b4e95944cca092880cecf3";
-        var secret = "18b9ebe6513c06e2";
+        var key = "1cb17dae92d33c89d6d3754cf88bb007";
+        var secret = "c9fc752f8f26401c";
         var urlBase = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT";
 
         function searchPhotos(searchTerm) {
@@ -22,13 +21,13 @@
     function selectPhoto(photo) {
         var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
         url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
-        WidgetService
+        widgetService
             .updateWidget(websiteId, pageId, widgetId, {url: url})
-            .success(function(){
+            .then(function(success){
+                console.log(success);
                 $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
-            })
-            .error(function () {
-
+            },function (error) {
+                console.log(erro)
             });
 
     }

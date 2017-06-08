@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="WAM">
 <head content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!---jQuery --->
+    <script src="vendor/jquery/dist/jquery-ui.js"></script>
+    <script src="vendor/jquery/dist/jquery.js"></script>
+    <script src="vendor/jquery/dist/jquery.slim.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+   <!-- <script type="text/javascript" src="../../node_modules/angular-ui-sortable/dist/sortable.js"></script> -->
+
     <!-- Angular ---->
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/angular/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.4/angular.js"></script>
+    <script src="https://code.angularjs.org/1.6.4/angular-route.js"></script>
+
     <script src="app.js"></script>
     <script src="config.js"></script>
-    <script src="directives/sortable.directive.client.js"></script>
+    <script src="directives/wbdv-sortable.js"></script>
 
     <!--- User --->
     <script src="views/user/controllers/login.controller.client.js"></script>
@@ -29,6 +40,13 @@
 
     <!-- widget -->
     <script src="views/widget/controllers/widget-list.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-new.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-edit.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-flickr-search.controller.client.js"></script>
+    <script src="services/widget.service.client.js"></script>
+    <script src="services/flickr.service.client.js"></script>
+
+    <!-- Servers -->
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,8 +77,6 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <!--<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>-->
 <!--<script src="../../assets/js/docs.min.js"></script>-->
 </body>

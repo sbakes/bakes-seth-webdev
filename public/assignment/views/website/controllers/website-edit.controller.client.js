@@ -18,13 +18,23 @@
             //model.website = websiteService.findWebsiteById(model.websiteId);
             websiteService
                 .findAllWebsitesForUser(model.userId)
-                .success(function(websites) {
-                    model.websites = websites;
+                .then(function(websites){
+                    console.log("found websites");
+                    model.websites = websites.data;
+                    console.log(websites);
+                }, function(error){
+                    console.log("error retrieving websites");
+                    console.log(error);
+                    model.message = "error retrieving websites";
                 });
             websiteService
                 .findWebsiteById(model.websiteId)
-                .success(function(website){
-                    model.website = website;
+                .then(function(website){
+                    model.website = website.data;
+                    console.log(model.website);
+                    console.log("website found!");
+                },function(error){
+                    console.log("error finding website");
                 });
 
         }
@@ -35,15 +45,15 @@
             //websiteService.updateWebsite();
             websiteService
                 .updateWebsite(model.websiteId, website)
-                .success(function(update){
+                .then(function(update){
                     if(update== null){
                         model.error = "Unable to update website";
                     }
                     else {
                         model.message = "Successfully updated website";
                     }
-                })
-                .error(function(){
+                },function(error){
+                    console.log(error);
                     model.error = "Unable to update website";
                 });
         }
@@ -52,11 +62,11 @@
             //websiteService.deleteWebsite(websiteId);
             websiteService
                 .deleteWebsite(websiteId)
-                .success(function (){
+                .then(function (){
                     $location.url('/user/'+model.userId+'/website');
-                })
-                .error(function(){
-                    model.erro = "Unable to delete website";
+                },function(error){
+                    console.log(error);
+                    model.error = "Unable to delete website";
                 });
         }
     }

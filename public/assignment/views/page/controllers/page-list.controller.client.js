@@ -5,24 +5,23 @@
 
     function pageListController($location, pageService, $routeParams) {
 
-        var pages = [
-                { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-                { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-                { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-            ];
-
         var model = this;
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
-        model.pageId = $routeParams['webId'];
+        model.pageId = $routeParams['pageId'];
         //model.pages = pages;
 
         function init() {
             //model.page = pageService.findPageByCredentials(model.websiteId);
             pageService
-                .findAllPages(model.websiteId)
-                .success(function(pages){
-                    model.pages = pages;
+                .findAllPagesForWebsite(model.websiteId)
+                .then(function(pages){
+                    model.pages = pages.data;
+                    console.log(pages);
+                    console.log("Successfully gathered pages");
+                },function(error){
+                    console.log(error);
+                    model.message = "error retrieving websites";
                 })
 
         }

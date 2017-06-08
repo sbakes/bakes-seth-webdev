@@ -19,14 +19,24 @@
         function init() {
             //model.page = pageService.findPageById(model.pageId);
             pageService
-                .findAllPages()
-                .success(function(){
-                    model.pages = pages;
+                .findAllPagesForWebsite(model.websiteId)
+                .then(function(pages){
+                    model.pages = pages.data;
+                    console.log(pages);
+                    console.log("Successfully gathered pages");
+                },function(error){
+                    console.log(error);
+                    model.message = "error retrieving pages";
                 });
             pageService
-                .findPageByWebsiteId(websiteId)
-                .success(function(){
-                   model.page = page;
+                .findPageByWebsiteId(model.websiteId)
+                .then(function(page){
+                    console.log(page);
+                    model.pageArr = page.data;
+                    model.page = model.pageArr[0];
+                    console.log(model.page.name);
+                }, function(error){
+                    console.log(error);
                 });
         }
         init();

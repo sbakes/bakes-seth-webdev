@@ -13,33 +13,45 @@
         // implementation
         function register(username, password, password2) {
 
-            var userNew = model.user;
-                userNew.username = username;
-                userNew.password = password;
-
+            console.log(username);
+            console.log(password);
+            console.log(password2);
 
             if (password !== password2) {
                 model.error = "Passwords must match";
                 return;
             }
 
+            var userNew = {
+                username: username,
+                password: password,
+                firstname: "temp",
+                lastname: "temp"
+
+            };
+
             //promise
-            var found = userService.findUserByUsername(username);
-            found
-                .then(function (found) {
+            userService
+                .findUserByUsername(userNew.username)
+                .then(function (success) {
+                    console.log(success);
                     model.error = "Username is not available";
                 },
-                (function () {
-                userService
-                    .createUser(userNew)
-                    .then(function (userNew) {
-                        $location.url('/user/' + userNew._id);
-                    },
-                    (function () {
-                        model.error = "failed to register user";
-                    }));
+                (function (error) {
+                    console.log(error);
+                    userService
+                        .createUser(userNew)
+                        .then(function (success) {
+                            console.log(success);
+                            model.message = "successfully registered";
+                            $location.url('/user/' + success._id);
+                        },
+                        function (error) {
+                            console.log(error);
+                            model.error = "failed to register user";
+                        });
 
-            }));
+                }));
 
             // model.message = user;
             //userService.createUser(user);

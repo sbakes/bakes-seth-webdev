@@ -21,28 +21,41 @@
             //websites = websiteService.findAllWebsitesForUser(model.userId);
             //model.website = websiteService.findWebsiteById(model.websiteId);
             websiteService
-                .findAllWebsitesForUser(userId)
-                .success(function(websites){
-                    model.websites = websites;
+                .findAllWebsitesForUser(model.userId)
+                .then(function(websites){
+                    console.log("found websites");
+                    model.websites = websites.data;
+                    console.log(websites);
+                }, function(error){
+                    console.log("error retrieving websites");
+                    console.log(error);
+                    model.message = "error retrieving websites";
                 });
+            //websites = websiteService.findAllWebsitesForUser(model.userId);
         }
         init();
 
         // implementation
-        function createWebsite(website) {
-            website.developerId = model.userId;
+        function createWebsite(name, description) {
+
+            var websiteNew = {
+                name: name,
+                description: description,
+                developerId: model.userId
+            };
+            //website.developerId = model.userId;
 
             websiteService
-                .createWebsite(website)
-                .success(function(){
+                .createWebsite(model.userId, websiteNew)
+                .then(function(success){
                     model.message = "Successfully created website";
+                    console.log(success);
                     $location.url('/user/'+model.userId+'/website');
-                })
-                .error(function(){
-                    model.error = "Unable to create website"
+                },function(error){
+                    model.error = "Unable to create website";
+                    console.log(error);
                 });
             //websiteService.createWebsite(website);
-            console.log("website created successful")
         }
     }
 })();

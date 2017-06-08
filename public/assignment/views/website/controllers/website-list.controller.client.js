@@ -10,13 +10,23 @@
         //model.websites = websites;
 
         function init() {
+            console.log(model.userId);
             websiteService
                 .findAllWebsitesForUser(model.userId)
-                .success(function(websites){
-                    model.websites = websites;
+                .then(function(websites){
+                    console.log("found websites");
+                    model.websites = websites.data;
+                    console.log(websites);
+                }, function(error){
+                    console.log("error retrieving websites");
+                    console.log(error);
+                    model.message = "error retrieving websites";
                 });
                 //websites = websiteService.findAllWebsitesForUser(model.userId);
+
+            console.log(model.websites);
         }
         init();
+
     }
 })();

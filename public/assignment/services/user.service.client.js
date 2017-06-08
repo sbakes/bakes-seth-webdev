@@ -16,18 +16,20 @@
         return api;
         
         function createUser(user) {
-            return $http.post("/api/assignment/user",user);
+            console.log("creating user");
+            return $http.post("/api/user",user);
         }
         
         function findUserByUsername(username) {
-            return $http.get("/api/assignment/user?username="+username);
+            console.log("finding user by username");
+            return $http.get("/api/user?username="+username);
         }
         
         function updateUser(user, uId) {
             console.log(user);
             console.log(uId);
-            var url = '/api/assignment/user/' + uId;
-            console.log(user);
+            var url = '/api/user/' + uId;
+            console.log(url);
             return $http.put(url, user);
         }
         
@@ -36,13 +38,17 @@
         }
 
         function findUserByCredentials(username, password) {
-            var url = '/api/assignment/user?username='+username+'&password='+password;
+            var url = '/api/user?username='+username+'&password='+password;
             console.log(url);
-            return $http.get(url);
+            return $http.get(url)
+                .then(function(response){
+                    console.log("Promise sent");
+                    return response.data;
+                });
         }
 
         function findUserById(userId) {
-            var url = '/api/assignment/user/' + userId;
+            var url = '/api/user/' + userId;
             console.log(url);
             return $http.get(url);
         }

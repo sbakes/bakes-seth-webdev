@@ -20,13 +20,14 @@
                 .findUserByCredentials(user.username, user.password)
                 .then(function(user) {
                     if (user !== null) {
+                        vm.message = "Welcome " + user.username;
                         $location.url('/user/' + user._id);
-                        $scope.message = "Welcome " + user.username;
                     } else {
                         vm.alert = "Username " + user.username + " not found, please try again";
                     }
                 }, function(error) {
                     console.log(error);
+                    console.log("Error Retrieving Username");
                     vm.alert = "Error logging in";
                 })
                 };
