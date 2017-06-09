@@ -36,11 +36,10 @@
 
             widgetService
                 .updateWidget(model.widget._id,model.widget)
-                .success(function (status) {
+                .then(function (status) {
                     console.log("photo selected");
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + vm.pageId + '/widget');
-                })
-                .error(function (error) {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+                }, function (error) {
                     console.log(error);
                 });
         }

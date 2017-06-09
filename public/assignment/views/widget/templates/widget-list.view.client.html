@@ -10,17 +10,27 @@
                    href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" style="color: gray;">
                     Widget List
                 </a>
+
+                <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" style="color: gray">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+
             </div>
         </div>
     </nav>
 
     <div class="container-fluid" wbdv-sortable="">
+
         <div ng-repeat="widget in model.widgets" class="wd-widget">
             <div ng-switch="widget.widgetType">
                 <div ng-switch-when="HEADING">
                     <div ng-include="'views/widget/templates/widget-heading.view.client.html'"></div>
                 </div>
                 <div ng-switch-when="IMAGE">
+                    <div ng-include="'views/widget/templates/widget-image.view.client.html'">
+                    </div>
+                </div>
+                <div ng-switch-when="FLICKR">
                     <div ng-include="'views/widget/templates/widget-flickr-search.view.client.html'">
                     </div>
                 </div>

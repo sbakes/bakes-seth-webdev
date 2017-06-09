@@ -10,10 +10,12 @@
                 axis: 'y',
                 start:function (event,ui) {
                     startIndex = ui.item.index();
+                    console.log(startIndex);
                 },
                 stop: function(event,ui) {
                     endIndex = ui.item.index();
-                    widgetService.updateOrder(vm.pageId,startIndex,endIndex);
+                    console.log(endIndex);
+                    widgetService.updateOrder(model.pageId,startIndex,endIndex);
                 }});
         }
         return {

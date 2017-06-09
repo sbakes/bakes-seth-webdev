@@ -31,17 +31,16 @@
         function createWidget(pid,widget) {
             widgetService
                 .createWidget(pid,widget,vm.widgetType)
-                .success(function (newWidget) {
+                .then(function (newWidget) {
                     if(newWidget == null){
                         vm.error = "widget not added";
                     }else{
                         $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
                         init();
                     }
-                })
-                .error(function () {
+                },function() {
                     vm.error = "widget not created";
-                })
+                });
         }
     }
 })();

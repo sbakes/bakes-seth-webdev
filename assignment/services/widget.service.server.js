@@ -20,16 +20,8 @@ module.exports = function (app) {
             { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
                 "url": "https://youtu.be/AM2Ivdi9c4E" },
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-            { "_id": "543", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-            { "_id": "543", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-            { "_id": "543", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "543", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://lorempixel.com/400/200/"},
-            { "_id": "543", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-            { "_id": "543", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "543", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-                "url": "https://youtu.be/AM2Ivdi9c4E" },
-            { "_id": "543", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+            { "_id": "543", "widgetType": "FLICKR", "pageId": "321", "text": ""},
+            { "_id": "543", "widgetType": "HEADING", "pageId": "789", "size": 2, "text": "GIZMODO"},
         ];
 
     function createWidget(req,res){
@@ -41,11 +33,11 @@ module.exports = function (app) {
 
     function findAllWidgetsForPage(req, res) {
         console.log("looking for widgets");
-        var widgetId = req.params.pageId;
-        console.log(widgetId);
+        var pageId = req.params.pageId;
+        console.log(pageId);
         var widgetsFound = [];
         for (var w in widgets) {
-            if (widgets[w]._id === widgetId){
+            if (widgets[w].pageId === pageId){
                 console.log("found one!");
                 widgetsFound.push(widgets[w]);
             }
