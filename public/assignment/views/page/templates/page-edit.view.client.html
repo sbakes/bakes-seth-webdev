@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <div class="glyphicon glyphicon-arrow-left">
                 </div>
             </a>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}">
                 Page Edit
             </a>
             <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
@@ -16,6 +16,15 @@
     </div>
 </nav>
 <body>
+
+<div class="alert alert-danger" ng-show="model.error">
+    {{model.error}}
+</div>
+
+<div class="alert alert-success" ng-show="model.message">
+    {{model.message}}
+</div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4 hidden-xs srollable-left">
@@ -50,9 +59,6 @@
 
                         </div>
                         <div class="col-sm-1">
-                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
                         </div>
                     </div>
                 </li>
@@ -68,14 +74,16 @@
 
             <label for="description">Description</label>
             <textarea id="description"
+                      ng-model="model.page.description"
                       rows="5"
                       class="form-control"
                       placeholder="{{model.page.description}}"></textarea>
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
+
+            <a ng-click="model.updatePage(model.page.name, model.page.description)"
                class="btn btn-block btn-primary">
                 Update
             </a>
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
+            <a ng-click="model.deletePage(model.pageId)"
                class="btn btn-block btn-danger">
                 Delete
             </a>

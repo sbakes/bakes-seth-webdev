@@ -24,11 +24,13 @@
                         $location.url('/user/' + user._id);
                     } else {
                         vm.alert = "Username " + user.username + " not found, please try again";
+                        vm.message = "Username & password not found"
                     }
                 }, function(error) {
                     console.log(error);
                     console.log("Error Retrieving Username");
                     vm.alert = "Error logging in";
+                    vm.message = "Username & password not found"
                 })
                 };
         }

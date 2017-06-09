@@ -15,10 +15,10 @@
             findAllPagesForWebsite: findAllPagesForWebsite
         };
 
-        function createPage(websiteId, page) {
-            page._id = (new Date()).getTime() + "";
+        function createPage(page, websiteId) {
+           // page._id = (new Date()).getTime() + "";
             var url = "/api/website/" + websiteId + "/page";
-            $http.post(url, page);
+            return $http.post(url, page);
         }
 
         function findPageByWebsiteId(websiteId) {
@@ -30,7 +30,7 @@
         function updatePage(pageId, page) {
             var url = "/api/page/" + pageId;
             console.log(url);
-            $http.put(url, Page);
+            return $http.put(url, page);
         }
 
         function deletePage(pageId) {

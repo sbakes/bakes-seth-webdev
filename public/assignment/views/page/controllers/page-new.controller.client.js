@@ -32,25 +32,37 @@
                 .then(function (page) {
                     model.page = page.data;
                 }, function(error){
-                    console.log(erro);
+                    console.log(error);
                 });
         }
 
         init();
 
         // implementation
-        function createPage(page) {
-            page.developerId = model.userId;
+        function createPage(pageName, pageDescription) {
+
+            n = new Date().getTime(); //so every page has a unique id
+
+            var pageNew = {
+                name: pageName,
+                description: pageDescription,
+                developerId: model.userId,
+                websiteId: model.websiteId,
+                _id: model.websiteId+n
+
+            };
             pageService
-                .createPage(page)
-                .success(function (page) {
-                    model.message("Successfully created page")
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page' + model.pageId);
+                .createPage(pageNew, model.websiteId)
+                .then(function (success) {
+                    //model.message("Successfully created page");
+                    console.log(success);
+                    console.log(model.userId);
+                    console.log(model.websiteId);
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
                     ///user/:userId/website/:websiteId/page/pageId
-                })
-                .error(function (page) {
-                    model.message("Unable to create page")
-                })
+                },function (error) {
+                    //model.message("Unable to create page")
+                });
             //pageService.createPage(page);
         }
     }

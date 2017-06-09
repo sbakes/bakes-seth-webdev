@@ -20,9 +20,11 @@
         }
 
         function updateWebsite(websiteId, website) {
+            console.log(websiteId);
+            console.log(website);
             var url = "/api/website/" + websiteId;
             console.log(url);
-            return $http.put(url, newWebsite);
+            return $http.put(url, website);
         }
 
         function deleteWebsite(websiteId) {

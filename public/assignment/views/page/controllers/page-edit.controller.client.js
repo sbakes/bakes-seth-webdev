@@ -35,6 +35,7 @@
                     model.pageArr = page.data;
                     model.page = model.pageArr[0];
                     console.log(model.page.name);
+                    console.log(model.page.description);
                 }, function(error){
                     console.log(error);
                 });
@@ -42,15 +43,27 @@
         init();
 
 
-        function updatePage(page) {
+        function updatePage(name, description) {
             //pageService.updatePage();
+
+            var Newpage = {
+                _id: model.pageId,
+                websiteId: model.websiteId,
+                userId: model.userId,
+                name: name,
+                description: description,
+                developerId: model.userId
+            };
             pageService
-                .updatePage(page)
-                .success(function(){
-                    model.message("Successfully update page");
-                })
-                .error(function(){
-                    model.error("Unable to update page");
+                .updatePage(model.pageId, Newpage)
+                .then(function(success){
+                    //console.log(success);
+                    model.message = "Successfully update page";
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
+                    $
+                }, function(error){
+                    //console.log(error);
+                    model.alert = "Unable to update page";
                 });
         }
 
@@ -58,12 +71,12 @@
             //pageService.deletePage(pageId);
             //$location.url('/user/'+model.userId+'/page');
             pageService
-                .deletePage(page)
-                .success(function(){
-                    model.message("Successfully deleted page");
-                })
-                .error(function(){
-                    model.error("Unable to delete page");
+                .deletePage(pageId)
+                .then(function(){
+                    model.message = "Successfully deleted page";
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
+                }, function(){
+                    model.error = "Unable to delete page";
                 });
         }
     }

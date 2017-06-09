@@ -14,7 +14,13 @@ module.exports = function (app) {
         ];
 
     function createPage(req,res){
-        var newPage = req.body;
+        console.log("creating pages");
+        var page = req.body;
+        page.created = (new Date());
+        console.log(page);
+        pages.push(page);
+        res.send(page);
+        console.log("page created");
 
     }
 
@@ -46,25 +52,37 @@ module.exports = function (app) {
     }
 
     function updatePage(req,res){
+        console.log("---------------------------");
         var page = req.body;
-        var pageId = req.params.pageId
-        for (var p in pages) {
-            if (pages[p]._id === pageId) {
-                pages[p] = page;
-            }
-        }
-        res.send(200);
-    }
-
-    function deletePage(req,res){
         var pageId = req.params.pageId;
 
-        pageModel.deletePage(pageId)
-            .then(function (page) {
-                    res.sendStatus(200);
-                },
-                function (error) {
-                    res.sendStatus(404);
-                });
+        console.log(pageId);
+        console.log(page);
+        for (var p in pages) {
+            if (pageId === pages[p]._id) {
+                console.log("found it!");
+                var index = pages.indexOf(pages[p]);
+                console.log(p);
+                pages[index] = page;
+                console.log(pages[p]);
+                console.log(page);
+                res.json(page);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function deletePage(req,res) {
+        var pageId = req.params.pageId;
+        console.log(pageId);
+        for (var p in pages) {
+            if (pages[p]._id === pageId) {
+                console.log("found one");
+                pages.splice(parseInt(p), 1);
+                console.log("spliced");
+            }
+        }
+        res.sendStatus(200);
     }
 };

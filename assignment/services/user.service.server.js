@@ -42,11 +42,19 @@ module.exports = function(app) {
     }
 
     function updateUser(req, res) {
+        console.log("updating user");
         var user = req.body;
         var userId = req.params.userId;
+        console.log(userId);
+        console.log(user);
         for (var u in users) {
             if (userId === users[u]._id) {
-                users[u] = user;
+                console.log("found it!");
+                var index = users.indexOf(users[u]);
+                console.log(u);
+                users[index] = user;
+                console.log(users[u]);
+                console.log(user);
                 res.json(user);
                 return;
             }
@@ -56,10 +64,10 @@ module.exports = function(app) {
 
     function createUser(req, res) {
         var user = req.body;
-        console.log(user);
         user._id = (new Date()).getTime() + "";
+        console.log(user);
         users.push(user);
-        res.send(user);
+        res.json(user);
     }
 
     function findUserByCredentials(req, res) {
@@ -98,10 +106,13 @@ module.exports = function(app) {
         //var userId = parseInt(req.params.uid);
         for (var u in users) {
             if (users[u]._id === userId) {
-                res.send(users[u]);
+                console.log("found him!");
+                console.log(users[u]);
+                res.json(users[u]);
                 return;
             }
         }
-        res.sendStatus(200);
+        console.log("did not find user)");
+        res.sendStatus(404);
     }
 };

@@ -41,12 +41,21 @@
         init();
 
 
-        function updateWebsite(website) {
+        function updateWebsite(name, description) {
             //websiteService.updateWebsite();
+            console.log("---------------------------");
+            var website = {
+                _id: model.websiteId,
+                name: name,
+                description: description,
+                developerId: model.userId
+
+            };
+            console.log(website);
             websiteService
                 .updateWebsite(model.websiteId, website)
                 .then(function(update){
-                    if(update== null){
+                    if(update === null){
                         model.error = "Unable to update website";
                     }
                     else {
@@ -62,11 +71,14 @@
             //websiteService.deleteWebsite(websiteId);
             websiteService
                 .deleteWebsite(websiteId)
-                .then(function (){
+                .then(function (success){
+                    console.log(success);
                     $location.url('/user/'+model.userId+'/website');
+                    console.log('deleted website');
                 },function(error){
                     console.log(error);
                     model.error = "Unable to delete website";
+                    console.log("unable to delete website");
                 });
         }
     }

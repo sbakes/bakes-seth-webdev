@@ -17,7 +17,10 @@
         
         function createUser(user) {
             console.log("creating user");
-            return $http.post("/api/user",user);
+            $http.post("/api/user",user);
+            var url = "/api/user?username="+user.username;
+            console.log(user.username);
+            return $http.get(url);
         }
         
         function findUserByUsername(username) {

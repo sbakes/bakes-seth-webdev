@@ -25,8 +25,8 @@
             var userNew = {
                 username: username,
                 password: password,
-                firstname: "temp",
-                lastname: "temp"
+                firstName: "temp",
+                lastName: "temp"
 
             };
 
@@ -42,9 +42,9 @@
                     userService
                         .createUser(userNew)
                         .then(function (success) {
-                            console.log(success);
+                            console.log(success.data);
                             model.message = "successfully registered";
-                            $location.url('/user/' + success._id);
+                            $location.url('/user/' + success.data._id);
                         },
                         function (error) {
                             console.log(error);

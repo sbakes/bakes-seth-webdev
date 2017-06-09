@@ -37,11 +37,14 @@
 
         // implementation
         function createWebsite(name, description) {
+            console.log(model.websites.length);
+            n = new Date().getTime(); //so every website has a unique id
 
             var websiteNew = {
                 name: name,
                 description: description,
-                developerId: model.userId
+                developerId: model.userId,
+                _id: model.userId + n
             };
             //website.developerId = model.userId;
 

@@ -60,17 +60,20 @@
         </div>
         <div class="form-group col-xs-12 col-sm-8">
             <label for="name">Name</label>
-            <input type="text" ng-model="model.page.name" class="form-control" id="name" placeholder="Name">
+            <input type="text"
+                   ng-model="model.page.name"
+                   class="form-control"
+                   id="name"
+                   placeholder="Name">
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="description"
-                       ng-model="model.page.description"
+                <input ng-model="model.page.description"
                        class="form-control"
                        id="description"
                        placeholder="This page is....">
             </div>
             <a class="btn btn-primary btn-block"
-               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">Enter</a>
+                ng-click="model.createPage(model.page.name, model.page.description)">Enter</a>
             <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
                class="btn btn-block btn-danger">
                 Cancel

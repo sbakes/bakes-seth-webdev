@@ -16,7 +16,10 @@ module.exports = function (app) {
     ];
 
     function createWebsite(req,res){
+        console.log("creating websites");
         var website = req.body;
+        website.created = (new Date());
+        console.log(website);
         websites.push(website);
         res.send(websites);
         console.log("website created");
@@ -28,7 +31,7 @@ module.exports = function (app) {
         console.log(userId);
         var foundWebsites = [];
         for (var w in websites) {
-            if (websites[w]._id === userId) {
+            if (websites[w].developerId === userId) {
                 console.log('found one');
                 foundWebsites.push(websites[w]);
             }
@@ -52,25 +55,37 @@ module.exports = function (app) {
 
 
     function updateWebsite(req,res){
+        console.log("---------------------------");
         var website = req.body;
         var websiteId = req.params.websiteId;
 
-        websiteModel.updateWebsite(websiteId,website)
-            .then(function (website) {
-                    res.json(website);
-                },
-                function (error) {
-                    res.sendStatus(404);
-                });
+        console.log(websiteId);
+        console.log(website);
+        for (var w in websites) {
+            if (websiteId === websites[w]._id) {
+                console.log("found it!");
+                var index = websites.indexOf(websites[w]);
+                console.log(w);
+                websites[index] = website;
+                console.log(websites[w]);
+                console.log(website);
+                res.json(website);
+                return;
+            }
+        }
+        res.sendStatus(404);
     }
 
     function deleteWebsite(req,res){
         var websiteId = req.params.websiteId;
+        console.log(websiteId)
         for (var w in websites) {
             if (websites[w]._id === websiteId) {
+                console.log("found one");
                 websites.splice(parseInt(w), 1);
+                console.log("spliced");
             }
         }
-        res.send(200);
+        res.sendStatus(200);
     }
 };
