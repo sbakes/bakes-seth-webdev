@@ -37,8 +37,9 @@
                     console.log(success.data);
                     model.error = "Username is not available";
                 },
-                (function (error) {
+                function (error) {
                     console.log(error);
+                    //noinspection JSUnresolvedFunction
                     userService
                         .createUser(userNew)
                         .then(function (success) {
@@ -51,7 +52,7 @@
                             model.error = "failed to register user";
                         });
 
-                }));
+                });
 
             // model.message = user;
             //userService.createUser(user);

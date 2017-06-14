@@ -75,8 +75,8 @@ module.exports = function(app, models) {
 
     function createUser(req, res) {
          var user = req.body;
-        // user._id = (new Date()).getTime() + "";
-        // console.log(user);
+         user._id = (new Date()).getTime() + "";
+         console.log(user);
         // users.push(user);
         // res.json(user);
         userModel
