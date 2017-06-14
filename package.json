@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
+  "engines": {
+    "node": "4.2.6",
+    "npm": "3.5.2"
+  },
   "dependencies": {
     "angular-ui-sortable": "^0.17.1",
     "body-parser": "^1.15.1",
