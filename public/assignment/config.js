@@ -85,20 +85,50 @@
                 controller: 'widgetListController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/image-editor', {
-                templateUrl: 'views/widget/editors/widget-image-editor.view.client.html',
-                controller: 'widgetListController',
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/image-new', {
+                templateUrl: 'views/widget/editors/widget-image-new.view.client.html',
+                controller: 'widgetNewController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/youtube-editor', {
-                templateUrl: 'views/widget/editors/widget-youtube-editor.view.client.html',
-                controller: 'widgetListController',
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/youtube-new', {
+                templateUrl: 'views/widget/editors/widget-youtube-new.view.client.html',
+                controller: 'widgetNewController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/header-editor', {
-                templateUrl: 'views/widget/editors/widget-heading-editor.view.client.html',
-                controller: 'widgetListController',
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/html-new', {
+                templateUrl: 'views/widget/editors/widget-html-new.html',
+                controller: 'widgetNewController',
                 controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/html-edit', {
+                templateUrl: 'views/widget/editors/widget-html-edit.html',
+                controller: 'widgetEditController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/heading-new', {
+                templateUrl: 'views/widget/editors/widget-heading-new.view.client.html',
+                controller: 'widgetNewController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/text-new', {
+                templateUrl: 'views/widget/editors/widget-text-new.view.client.html',
+                controller: 'widgetNewController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/text-edit', {
+                templateUrl: 'views/widget/editors/widget-text-editor.view.client.html',
+                controller: 'widgetEditController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
+                templateUrl: 'views/widget/templates/widget-edit.view.client.html',
+                controller: 'widgetEditController',
+                controllerAs: 'model'
+            })
+            .when("/user/:id/website/:websiteId/page/:pageId/widget/:widgetId/flickr", {
+                templateUrl: "views/widget/templates/widget-flickr-search.view.client.html",
+                controller: "flickrController",
+                controllerAs: "model"
             })
             .otherwise({
                 redirectTo: "/"

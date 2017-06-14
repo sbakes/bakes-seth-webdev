@@ -1,13 +1,12 @@
-<!DOCTYPE html>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <div class="glyphicon glyphicon-arrow-left">
                 </div>
             </a>
             <a class="navbar-brand" href="#">
-                New Youtube Link
+                Youtube Editor
             </a>
             <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <div class="glyphicon glyphicon-check">
@@ -16,30 +15,33 @@
         </div>
     </div>
 </nav>
-<body>
 
 <div class="container-fluid">
+    <label for="text">Text</label>
+    <input id="text"
+           ng-model="model.widget.text"
+           placeholder="{{model.widget.text}}"
+           class="form-control"/>
 
-<label for="name">Name</label>
-<input id="name"
-       class="form-control"/>
+    <label for="size">Size</label>
+    <input id="size"
+           ng-model="model.widget.size"
+           placeholder="{{model.widget.size}}"
+           class="form-control"/>
 
-<label for="text">Text</label>
-<input id="text"
-       class="form-control"/>
+    <label for="url">URL</label>
+    <input id="url"
+           ng-model="model.widget.url"
+           placeholder="{{model.widget.url}}"
+           class="form-control"/>
 
-<label for="url">URL</label>
-<input id="url"
-       class="form-control"/>
-
-<label for="url">Width</label>
-<input id="url"
-       class="form-control"/>
-
-
-<a class="btn btn-primary btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Upload</a>
-<a class="btn btn-danger btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Delete</a>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.updateWidget(model.widget.text, model.widget.size, model.widget.url)">Submit</a>
+    <a class="btn btn-danger btn-block"
+       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+       ng-click="model.deleteWidget()">Delete</a>
 </div>
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">

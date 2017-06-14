@@ -1,56 +1,51 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon-arrow-left"></span>
             </a>
         </div>
         <div class="navbar-brand pull-left">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}" class="no-underline-hover">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}" class="no-underline-hover">
                 Widget Editor
             </a>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid"
-     ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
+<div class="alert alert-danger" ng-show="model.error">
+    {{model.error}}
 </div>
 
-<form action="/public/upload" method="post" enctype="multipart/form-data">
-    <input  name="myFile"    type="file" class="form-control"/>
-    <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
-    <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
-    <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
-    <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
-    <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
-    <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
-</form>
-
-
-<div class="container-fluid">
-    <a ng-click="model.updateWidget(model.widgetId,model.widget)" class="btn btn-primary btn-block margin-top-label">
-        <span class="glyphicon glyphicon-ok margin-right-10"></span>Update
-    </a>
-    <a ng-click="model.deleteWidget(model.widgetId)" class="btn btn-danger btn-block add-margin-bottom">
-        <span class="glyphicon glyphicon-trash margin-right-10"></span>Delete
-    </a>
-
-    <div class="alert alert-danger" ng-show="model.error">
-        {{model.error}}
-    </div>
-
-    <div class="alert alert-success" ng-show="model.message">
-        {{model.message}}
-    </div>
+<div class="alert alert-success" ng-show="model.message">
+    {{model.message}}
 </div>
 
+<div ng-switch="model.widget.widgetType">
+    <div ng-switch-when="HEADING">
+        <div ng-include="'views/widget/editors/widget-heading-editor.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <div ng-include="'views/widget/editors/widget-image-editor.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="HTML">
+        <div ng-include="'views/widget/editors/widget-html-edit.html'"></div>
+    </div>
+    <div ng-switch-when="YOUTUBE">
+        <div ng-include="'views/widget/editors/widget-youtube-editor.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="TEXT">
+        <div ng-include="'views/widget/editors/widget-text-editor.view.client.html'"></div>
+    </div>
+</div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}" class="no-underline-hover">
-                <span class="glyphicon glyphicon-user margin-left-10"></span>
-            </a>
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-right">
+                <a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
         </div>
     </div>
 </nav>

@@ -78,15 +78,8 @@
                 });
         }
 
-        $('#wdgt-list').sortable({
-            axis:"y",
-            start: function(event, ui){
-                startIndex=ui.item.index();
-            },
-            stop: function(event, ui) {
-                endIndex=ui.item.index();
-                return widgetService.updateOrder(model.pageId, startIndex, endIndex);
-            }
-        })
+        $('widget-container').sortable({
+            axis:"y"
+        });
     }
 })();

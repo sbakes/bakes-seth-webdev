@@ -34,7 +34,7 @@
             userService
                 .findUserByUsername(userNew.username)
                 .then(function (success) {
-                    console.log(success);
+                    console.log(success.data);
                     model.error = "Username is not available";
                 },
                 (function (error) {

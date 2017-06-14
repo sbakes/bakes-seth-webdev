@@ -25,7 +25,8 @@
         
         function findUserByUsername(username) {
             console.log("finding user by username");
-            return $http.get("/api/user?username="+username);
+            var result = $http.get("/api/user?username="+username);
+            return result
         }
         
         function updateUser(user, uId) {
@@ -52,6 +53,7 @@
 
         function findUserById(userId) {
             var url = '/api/user/' + userId;
+            console.log(userId);
             console.log(url);
             return $http.get(url);
         }

@@ -1,9 +1,9 @@
 (function () {
     angular
-        .module('WAM')
-        .directive('wbdvSortable', wbdvSortable);
-
-    function wbdvSortable() {
+        .module("myDirectives", [])
+        .directive("widgetSortable", widgetSortable);
+    
+    function widgetSortable() {
         function linker(scope, element, attributes) {
             var data = scope.data;
             var startIndex = -1;
@@ -18,7 +18,7 @@
                     },
                     stop: function (event, ui) {
                         endIndex = ui.item.index();
-
+                        
                         var sortedElement = scope.data.splice(startIndex, 1)[0];
                         scope.data.splice(endIndex, 0, sortedElement);
                         scope.$apply();

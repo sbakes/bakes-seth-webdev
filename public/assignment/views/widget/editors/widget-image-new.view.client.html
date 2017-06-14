@@ -1,0 +1,87 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <div class="glyphicon glyphicon-arrow-left">
+                </div>
+            </a>
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                New Image
+            </a>
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <div class="glyphicon glyphicon-check">
+                </div>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <h1> Link: </h1>
+
+    <label for="image.name">Name</label>
+    <input id="image.name"
+           ng-model="image.name"
+           class="form-control"/>
+
+    <label for="image.text">Size</label>
+    <input id="image.text"
+           ng-model="image.text"
+           class="form-control"/>
+
+    <label for="model.image.url">URL</label>
+    <input id="model.image.url"
+           ng-model="model.image.url"
+           class="form-control"/>
+
+    <a ng-click="model.addWidget(image.name, image.text, model.image.url, 'IMAGE')" class="btn btn-block btn-success">
+        Submit
+    </a>
+</div>
+
+<div class="container-fluid">
+    <h1> Upload: </h1>
+
+    <label>File Upload</label>
+    <form action="/api/upload"   method="post" enctype="multipart/form-data">
+        <input  name="myFile"    type="file" class="form-control"/>
+        <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
+        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
+        <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
+        <input  name="name"      value="image.name"   style="display: none"/>
+        <input  name="url"       value="image.url"   style="display: none"/>
+        <input  name="text"      value="image.text"   style="display: none"/>
+
+    <select class="form-control">
+        <option value="1">1 (XL Large)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6 (smallest)</option>
+    </select>
+    <button type="submit"
+            class="btn btn-primary btn-block">Upload</button>
+    <a class="btn btn-danger btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Cancel</a>
+        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr"
+           class="btn btn-block btn-info">
+            Search Flickr
+        </a>
+
+    </form>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-right">
+                <a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

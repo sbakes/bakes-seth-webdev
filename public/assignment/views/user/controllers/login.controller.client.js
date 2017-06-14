@@ -19,7 +19,11 @@
             userService
                 .findUserByCredentials(user.username, user.password)
                 .then(function(user) {
+                    console.log(user);
                     if (user !== null) {
+                        console.log(user.data);
+                        console.log(user._id.toString());
+                        console.log("welcome");
                         vm.message = "Welcome " + user.username;
                         $location.url('/user/' + user._id);
                     } else {

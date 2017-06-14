@@ -30,6 +30,7 @@
             websiteService
                 .findWebsiteById(model.websiteId)
                 .then(function(website){
+                    console.log("website ID" + model.websiteId);
                     model.website = website.data;
                     console.log(model.website);
                     console.log("website found!");
@@ -47,7 +48,7 @@
             var website = {
                 _id: model.websiteId,
                 name: name,
-                description: description,
+                description: descrip2tion,
                 developerId: model.userId
 
             };

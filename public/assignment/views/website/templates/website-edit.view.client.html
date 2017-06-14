@@ -75,7 +75,7 @@
                       placeholder="{{model.website.description}}"></textarea>
             <a href="#!/user/{{model.userId}}/website"
                class="btn btn-block btn-primary"
-               ng-click="model.updateWebsite(model.website.description)">
+               ng-click="model.updateWebsite(model.website.name, model.website.description)">
                 Update
             </a>
             <a href="#!/user/{{model.userId}}/website"

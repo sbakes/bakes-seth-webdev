@@ -29,11 +29,10 @@
                     model.message = "error retrieving pages";
                 });
             pageService
-                .findPageByWebsiteId(model.websiteId)
+                .findPageById(model.pageId)
                 .then(function(page){
                     console.log(page);
-                    model.pageArr = page.data;
-                    model.page = model.pageArr[0];
+                    model.page = page.data;
                     console.log(model.page.name);
                     console.log(model.page.description);
                 }, function(error){

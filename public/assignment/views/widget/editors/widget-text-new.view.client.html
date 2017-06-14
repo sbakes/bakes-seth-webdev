@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <div class="glyphicon glyphicon-arrow-left">
+                </div>
+            </a>
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                New Text
+            </a>
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <div class="glyphicon glyphicon-check">
+                </div>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div ng-if="model.alert" class="alert alert-danger">
+        {{model.alert}}
+    </div>
+
+    <div>
+        <label for="widget-text">Text</label>
+        <input ng-model="model.widget.text" class="form-control" id="widget-text"/>
+        <label for="widget-rows">Rows</label>
+        <input ng-model="model.widget.rows" class="form-control" id="widget-rows"/>
+        <label for="widget-placeholder">Placeholder</label>
+        <input ng-model="model.widget.placeholder" class="form-control" id="widget-placeholder"/>
+        <label for="widget-formatted">Formatted</label>
+        <input ng-model="model.widget.formatted" class="form-control" type="checkbox" id="widget-formatted"/>
+    </div>
+
+    <a ng-click="model.addWidgetText(model.widget.text, model.widget.rows, model.widget.placeholder, 'TEXT', model.widget.formatted)" class="btn btn-block btn-primary">
+        Submit
+    </a>
+    <a ng-click="model.deleteWidget()" class="btn btn-block btn-danger">
+        Delete
+    </a>
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-right">
+                <a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

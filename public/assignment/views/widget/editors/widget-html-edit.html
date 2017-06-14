@@ -1,12 +1,21 @@
-<h1>HTML Editor</h1>
+<div class="container">
+    <div ng-if="model.alert" class="alert alert-danger">
+        {{model.alert}}
+    </div>
 
-<label for="html-name">Widget Name</label>
-<input ng-model="model.widget.name"
-       class="form-control"
-       id="html-name"/>
-
-<label for="html-text">Text</label>
-<textarea ng-model="model.widget.text"
-          class="form-control"
-          rows="4"
-          id="html-text"></textarea>
+    <div text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]"
+         ng-model="model.widget.text">
+    </div>
+    <a   ng-click="model.updateWidget('', '', '',model.widget.text)"
+         class="btn btn-block btn-primary">
+        Submit
+    </a>
+    <a  class="btn btn-block btn-danger"
+        ng-click="model.deleteWidget()">
+        Delete
+    </a>
+    <!---ng-click="model.deleteWidget()"  --->
+</div>

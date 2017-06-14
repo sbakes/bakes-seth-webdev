@@ -12,14 +12,14 @@
             updateWidget: updateWidget,
             deleteWidget: deleteWidget,
             //updateOrder: updateOrder,
-            //photoSearch: photoSearch
+            //photoSearch: photoSearch,
             //uploadImage: uploadImage
         };
 
         function createWidget(pageId, widget) {
             var url = "/api/page/"+pageId+"/widget";
             console.log(url);
-            $http.post(url, widget);
+            return $http.post(url, widget);
         }
 
         function findWidgetsByPageId(pageId) {
@@ -31,7 +31,7 @@
         function updateWidget(widgetId, widget) {
             var url = "/api/widget/"+widgetId;
             console.log(url);
-            $http.put(url, widget);
+            return $http.put(url, widget);
         }
 
         function deleteWidget(widgetId) {

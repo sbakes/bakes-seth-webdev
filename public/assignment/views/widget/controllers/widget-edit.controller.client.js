@@ -4,28 +4,32 @@
         .controller("widgetEditController", widgetEditController);
 
     function widgetEditController($routeParams, $location, widgetService) {
-        var vm = this;
-        vm.getEditorTemplateUrl = getEditorTemplateUrl;
-        vm.updateWidget = updateWidget;
-        vm.deleteWidget = deleteWidget;
+        var model = this;
+        model.getEditorTemplateUrl = getEditorTemplateUrl;
+        model.updateWidget = updateWidget;
+        model.deleteWidget = deleteWidget;
 
         function init() {
-            vm.userId = $routeParams['userId'];
-            vm.websiteId = $routeParams['websiteId'];
-            vm.pageId = $routeParams['pageId'];
-            vm.widgetId = $routeParams['widgetId'];
+            model.userId = $routeParams['userId'];
+            model.websiteId = $routeParams['websiteId'];
+            model.pageId = $routeParams['pageId'];
+            model.widgetId = $routeParams['widgetId'];
 
             widgetService
-                .findAllWidgetsForPage(vm.pageId)
-                .success(function (widgets) {
-                    vm.widgets = widgets;
+                .findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    console.log(widgets);
+                    model.widgets = widgets.data;
                 });
             widgetService
-                .findWidgetById(vm.widgetId)
-                .success(function (widget) {
-                    vm.widget = widget;
-                    vm.widget.operation = "edit";
-                })
+                .findWidgetById(model.widgetId)
+                .then(function (widget) {
+                    model.widget = widget.data;
+                    console.log(model.widget);
+                    model.widget.operation = "edit";
+                }, function(error) {
+                    console.log(error);
+                });
         }
         init();
 
@@ -33,30 +37,42 @@
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
 
-        function updateWidget(widgetId,widget){
+        function updateWidget(name, size, url, text) {
+            var widgetUpdate = model.widget;
+            widgetUpdate.name = name;
+            widgetUpdate.size = size;
+            widgetUpdate.url = url;
+            widgetUpdate.text = text;
+
+            console.log(widgetUpdate);
+
             widgetService
-                .updateWidget(widgetId, widget)
-                .success(function (update) {
+                .updateWidget(model.widgetId, widgetUpdate)
+                .then(function (update) {
                     if(update == null){
-                        vm.error = "update unsuccessful";
+                        console.log(update);
+                        model.error = "update unsuccessful";
                     }else{
-                        vm.message = "update successful";
+                        console.log(update);
+                        model.message = "update successful";
                         init();
                     }
-                })
-                .error(function () {
-                    vm.error ="update unsuccessful";
-                })
+                }, function (error) {
+                    console.log(error);
+                    model.error ="update unsuccessful";
+                });
+
         }
 
-        function deleteWidget(widgetId){
+        function deleteWidget(){
+            var widgetId = model.widgetId;
             widgetService
                 .deleteWidget(widgetId)
-                .success(function () {
-                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
-                })
-                .error(function () {
-                    vm.error = "widget update unsuccessful";
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+                }, function (error) {
+                    console.log(error);
+                    model.error = "widget update unsuccessful";
                 });
         }
     }

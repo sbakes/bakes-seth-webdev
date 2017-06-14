@@ -5,8 +5,8 @@
                 <div class="glyphicon glyphicon-arrow-left">
                 </div>
             </a>
-            <a class="navbar-brand" href="#">
-                Image Editor
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                New Youtube Link
             </a>
             <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <div class="glyphicon glyphicon-check">
@@ -36,7 +36,7 @@
            class="form-control"/>
 
     <a class="btn btn-primary btn-block"
-       ng-click="model.updateWidget(model.widget.text, model.widget.size, model.widget.url)">Submit</a>
+       ng-click="model.addWidget(model.widget.text, model.widget.size, model.widget.url, 'YOUTUBE')">Submit</a>
     <a class="btn btn-danger btn-block"
        href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
        ng-click="model.deleteWidget()">Delete</a>

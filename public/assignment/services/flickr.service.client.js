@@ -27,9 +27,8 @@
                 console.log(success);
                 $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
             },function (error) {
-                console.log(erro)
+                console.log(error)
             });
-
     }
 
 })();

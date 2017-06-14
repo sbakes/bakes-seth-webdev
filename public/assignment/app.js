@@ -1,5 +1,5 @@
 (function () {
     angular
-        .module('WAM', ['ngRoute']);
+        .module('WAM', ['ngRoute', 'textAngular']);
 
 })();
