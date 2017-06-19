@@ -43,12 +43,19 @@
 
 
         function updateWebsite(name, description) {
+
+            if (name === undefined) {
+                console.log("no name found");
+                model.error = 'Website must have a name';
+                return;
+            };
+
             //websiteService.updateWebsite();
             console.log("---------------------------");
             var website = {
                 _id: model.websiteId,
                 name: name,
-                description: descrip2tion,
+                description: description,
                 developerId: model.userId
 
             };

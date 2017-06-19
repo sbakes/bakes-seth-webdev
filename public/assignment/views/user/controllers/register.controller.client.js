@@ -3,7 +3,7 @@
         .module('WAM')
         .controller('registerController', registerController);
 
-    function registerController($location, userService) {
+    function registerController($location, userService, $rootScope) {
 
         var model = this;
 
@@ -22,6 +22,12 @@
                 return;
             }
 
+            if (username.length == 0 ||
+                password.length === 0) {
+                model.error = 'Please enter username and password';
+                return;
+            }
+
             var userNew = {
                 username: username,
                 password: password,
@@ -30,29 +36,43 @@
 
             };
 
-            //promise
             userService
-                .findUserByUsername(userNew.username)
-                .then(function (success) {
-                    console.log(success.data);
-                    model.error = "Username is not available";
-                },
-                function (error) {
-                    console.log(error);
-                    //noinspection JSUnresolvedFunction
-                    userService
-                        .createUser(userNew)
-                        .then(function (success) {
-                            console.log(success.data);
-                            model.message = "successfully registered";
-                            $location.url('/user/' + success.data._id);
-                        },
-                        function (error) {
-                            console.log(error);
-                            model.error = "failed to register user";
-                        });
+                .register(username, password)
+                .then(function (response) {
+                        var user = response.data;
+                        $rootScope.currentUser = user;
+                        $location.url("/user/" + user._id);
+                    },
+                    function (error) {
+                        model.alert = error.data;
+                    }
+                )
 
-                });
+
+
+            //promise
+            // userService
+            //     .findUserByUsername(userNew.username)
+            //     .then(function (success) {
+            //         console.log(success.data);
+            //         model.error = "Username is not available";
+            //     },
+            //     function (error) {
+            //         console.log(error);
+            //         //noinspection JSUnresolvedFunction
+            //         userService
+            //             .createUser(userNew)
+            //             .then(function (success) {
+            //                 console.log(success.data);
+            //                 model.message = "successfully registered";
+            //                 $location.url('/user/' + success.data._id);
+            //             },
+            //             function (error) {
+            //                 console.log(error);
+            //                 model.error = "failed to register user";
+            //             });
+            //
+            //     });
 
             // model.message = user;
             //userService.createUser(user);

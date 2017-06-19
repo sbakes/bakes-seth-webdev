@@ -21,7 +21,8 @@
             .when('/profile', {
                 templateUrl: 'views/user/templates/profile.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: { loggedin: checkLoggedIn }
             })
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.html',
@@ -131,7 +132,31 @@
                 controllerAs: "model"
             })
             .otherwise({
-                redirectTo: "/"
+                redirectTo: "/login"
             });
+
+        function checkLoggedIn(userService, $q, $location, $rootScope) {
+            var deferred = $q.defer();
+            userService
+                .checkLoggedIn()
+                .then(
+                    function (response) {
+                        var user = response.data;
+                        if (user === '0') {
+                            deferred.reject();
+                            $rootScope.currentUser = null;
+                            $location = "#!/login";
+                        } else {
+                            $rootScope.currentUser = user;
+                            deferred.resolve();
+                        }
+                    },
+                    function (error) {
+                        $rootScope.currentUser = null;
+                        deferred.reject();
+                    }
+                );
+            return deferred.promise;
+        }
     }
 })();

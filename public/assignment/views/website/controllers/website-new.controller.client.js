@@ -40,6 +40,14 @@
             console.log(model.websites.length);
             n = new Date().getTime(); //so every website has a unique id
 
+            console.log("name: " + name);
+
+            if (name === undefined) {
+                console.log("no name found");
+                model.error = 'Website must have a name';
+                return;
+            };
+
             var websiteNew = {
                 name: name,
                 description: description,

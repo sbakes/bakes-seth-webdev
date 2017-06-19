@@ -38,6 +38,12 @@
         }
 
         function updateWidget(name, size, url, text) {
+
+            if (name === undefined) {
+                console.log("no name found");
+                model.error = 'Widget must have text';
+                return;
+            };
             var widgetUpdate = model.widget;
             widgetUpdate.name = name;
             widgetUpdate.size = size;

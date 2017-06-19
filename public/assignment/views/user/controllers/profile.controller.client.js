@@ -28,6 +28,12 @@
 
         function update(user){
             console.log(user);
+
+            if(user === undefined) {
+                model.error = "User update cannot be empty";
+                return;
+            }
+
             user._id = model.userId;
             userService
                 .updateUser(user, model.userId)
@@ -41,6 +47,21 @@
                     model.error = "Unable to update user";
                 });
 
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(
+                    function () {
+                        $rootScope.currentUser = null;
+                        $location = "#/login";
+                    },
+                    function () {
+                        $rootScope.currentUser = null;
+                        $location = "#/login";
+                    }
+                );
         }
     }
 

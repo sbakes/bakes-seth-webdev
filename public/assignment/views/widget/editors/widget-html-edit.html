@@ -1,6 +1,10 @@
 <div class="container">
-    <div ng-if="model.alert" class="alert alert-danger">
-        {{model.alert}}
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
+    </div>
+
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
     </div>
 
     <div text-angular

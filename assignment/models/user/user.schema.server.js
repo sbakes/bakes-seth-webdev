@@ -3,6 +3,10 @@ module.exports = function () {
     
     var userSchema = mongoose.Schema({
         _id: String,
+        facebook: {
+            id:    String,
+            token: String
+        },
         username: String,
         password: String,
         firstName: String,

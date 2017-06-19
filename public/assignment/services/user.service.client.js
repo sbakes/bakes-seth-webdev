@@ -11,9 +11,42 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            login: login,
+            logout: logout,
+            register: register,
+            checkLoggedIn: checkLoggedIn
         };
         return api;
+
+        function login(username, password) {
+            var url = "/api/login";
+            var user = {
+                username: username,
+                password: password
+            };
+            console.log(user);
+            return $http.post(url, user);
+        }
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
+        function register(username, password) {
+            var user = {
+                _id: (new Date()).getTime() + "",
+                firstName: 'temp',
+                lastName: 'temp',
+                username: username,
+                password: password
+            };
+            return $http.post("/api/register", user);
+        }
+
+        function checkLoggedIn() {
+            return $http.get("/api/loggedin");
+        }
         
         function createUser(user) {
             console.log("creating user");

@@ -1,20 +1,28 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <div class="glyphicon glyphicon-arrow-left">
                 </div>
             </a>
             <a class="navbar-brand" href="#">
                 Image Editor
             </a>
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <div class="glyphicon glyphicon-check">
                 </div>
             </a>
         </div>
     </div>
 </nav>
+
+<div class="alert alert-danger" ng-show="model.error">
+    {{model.error}}
+</div>
+
+<div class="alert alert-success" ng-show="model.message">
+    {{model.message}}
+</div>
 
 <div class="container-fluid">
     <label for="text">Text</label>
@@ -38,7 +46,7 @@
     <a class="btn btn-primary btn-block"
        ng-click="model.updateWidget(model.widget.text, model.widget.size, model.widget.url)">Submit</a>
     <a class="btn btn-danger btn-block"
-       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
        ng-click="model.deleteWidget()">Delete</a>
 </div>
 
@@ -47,7 +55,7 @@
     <div class="container">
         <div class="row navbar-text">
             <div class="col-xs-3 text-right">
-                <a href="#!/user/{{model.userId}}">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

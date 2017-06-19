@@ -41,6 +41,12 @@
         // implementation
         function createPage(pageName, pageDescription) {
 
+            if (name === undefined) {
+                console.log("no name found");
+                model.error = 'Page must have a name';
+                return;
+            };
+
             n = new Date().getTime(); //so every page has a unique id
 
             var pageNew = {

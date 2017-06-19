@@ -14,6 +14,13 @@
         model.pageId = $routeParams['pageId'];
 
         function addWidget(text, size, url, type) {
+
+            if (text === undefined) {
+                console.log("no name found");
+                model.error = 'Widget must have text';
+                return;
+            };
+
             var newWidget = {
                 pageId: model.pageId,
                 text: text,
@@ -56,7 +63,7 @@
                 .then(
                     function (success) {
                         var id = success.data._id;
-                        $location.url('#!/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + id);
+                        $location.url('#/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + id);
                     },
                     function (error) {
                         model.alert = error.data;

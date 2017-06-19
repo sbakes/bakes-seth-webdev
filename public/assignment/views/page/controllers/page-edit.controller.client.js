@@ -43,6 +43,12 @@
 
 
         function updatePage(name, description) {
+
+            if (name === undefined) {
+                console.log("no name found");
+                model.error = 'Page must have a name';
+                return;
+            };
             //pageService.updatePage();
 
             var Newpage = {
