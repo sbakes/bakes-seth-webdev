@@ -12,8 +12,17 @@
             findPageById: findPageById,
             updatePage: updatePage,
             deletePage: deletePage,
-            findAllPagesForWebsite: findAllPagesForWebsite
+            findAllPagesForWebsite: findAllPagesForWebsite,
+            findPageByAuthorId: findPageByAuthorId
         };
+
+        function findPageByAuthorId(username, userId){
+            //console.log(userId);
+            //console.log("username in pageContorller: " + username);
+            var url = "/api/page/user/" + userId;
+            return $http.get(url, username);
+            console.log(url);
+        }
 
         function createPage(websiteId, page) {
             //console.log(page.websiteId);

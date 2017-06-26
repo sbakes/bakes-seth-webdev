@@ -34,6 +34,11 @@
                 controller: 'websiteListController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/pastComments', {
+                templateUrl: 'views/user/templates/comments.html',
+                controller: 'profileController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId/sources', {
                 templateUrl: 'views/user/templates/sources.html',
                 controller: 'websiteListController',

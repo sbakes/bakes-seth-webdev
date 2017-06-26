@@ -4,6 +4,7 @@ module.exports = function (app, model) {
     app.get('/api/page/:pageId', findPageById);
     app.put('/api/page/:pageId', updatePage);
     app.delete('/api/page/:pageId', deletePage);
+    app.get('/api/page/user/:userId', findPageByAuthorId);
 
     var pageModel = model.pageModel;
 
@@ -14,6 +15,21 @@ module.exports = function (app, model) {
     //         { "_id": "543", "name": "Bob's Post", "websiteId": "234", "description": "Lorem" },
     //         { "_id": "234", "name": "Bob's Post", "websiteId": "334", "description": "Lorem" }
     //     ];
+
+    function findPageByAuthorId(req, res){
+        var username = req.body;
+        console.log(username);
+        console.log(req.params.userId);
+        console.log("-------");
+        pageModel
+            .findPageByAuthorId(username)
+            .then(function(success){
+                console.log(success);
+                res.send(success);
+            }, function(error){
+                res.status(400);
+            })
+    }
 
     function createPage(req,res){
         console.log("creating pages");

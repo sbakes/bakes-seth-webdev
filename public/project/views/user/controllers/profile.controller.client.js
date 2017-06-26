@@ -3,7 +3,7 @@
         .module('WAM')
         .controller('profileController', profileController);
     
-    function profileController($location, userService, $routeParams) {
+    function profileController($location, userService, $routeParams, pageService, $scope) {
 
         var model = this;
         model.userId = $routeParams['userId'];
@@ -11,6 +11,7 @@
         function init(){
             console.log(model.userId);
             model.update = update;
+            model.pastComments = pastComments;
                 userService
                     .findUserById(model.userId)
                     .then(function(success) {
@@ -23,8 +24,25 @@
                         console.log(error);
                         console.log("unable to retrieve user info");
                     });
+            //pastComments()
         }
         init();
+
+        function pastComments(userId, username){
+            console.log(username);
+            pageService
+                .findPageByAuthorId(username, model.userId)
+                .then(function(success){
+                    console.log("found comments");
+                    $scope.pastComments = success.data;
+                    console.log($scope.pastComments);
+                    //$location.url("#/user/"+model.userId+"/pastComments");
+                    $location.url('/user/' + model.userId + "/pastComments");
+                }, function(error){
+                    model.error = "error retrieving comments";
+                })
+
+        }
 
         function update(user){
             console.log(user);
@@ -63,6 +81,10 @@
                     }
                 );
         }
+
+        $scope.sortType     = 'name'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+        $scope.searchNews   = '';     // set the default search/filter term
     }
 
 })();
