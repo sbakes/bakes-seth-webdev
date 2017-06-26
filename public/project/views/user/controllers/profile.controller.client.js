@@ -62,7 +62,7 @@
                 .findPageByAuthorId(username, model.userId)
                 .then(function(success){
                     console.log("found comments");
-                    $location.url('/user/' + model.userId + "/pastComments");
+                    //$location.url('/user/' + model.userId + "/pastComments");
                     $scope.pastComments = success.data;
                     console.log($scope.pastComments);
                     //$location.url("#/user/"+model.userId+"/pastComments");

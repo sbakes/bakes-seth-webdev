@@ -69,7 +69,8 @@
 
 
         <a class="btn btn-info btn-block"
-           data-ng-click="model.pastComments(model.userId, model.user.username)">Comment History</a>
+           data-ng-click="model.pastComments(model.userId, model.user.username)"
+           href="#/user/{{model.userId}}/pastComments">Comment History</a>
         <a class="btn btn-primary btn-block"
            href="#/user/{{model.userId}}/preferences">News Preferences</a>
         <a class="btn btn-success btn-block"
