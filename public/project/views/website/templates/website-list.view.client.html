@@ -10,13 +10,13 @@
             <a href="#/user/{{model.userId}}/" class="navbar-brand glyphicon glyphicon-chevron-left" ng-if="!model.isAnon()"></a>
             <a href="#/" class="navbar-brand glyphicon glyphicon-chevron-left" ng-if="model.isAnon()"></a>
             <a class="navbar-brand" href="#/">CS4450 News Aggregator </a>
-            <a class="navbar-brand" href="#/user/" ng-if="model.isAnon()"> Register</a>
+            <a class="navbar-brand" href="#/register/" ng-if="model.isAnon()"> Register</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-if="!model.isAnon()">
             <ul class="nav navbar-nav">
                 <li><a href="#/">Home</a></li>
                 <li><a href="#/login">Login</a></li>
-                <li><a href="#/user/">Register</a></li>
+                <li><a href="#/register/">Register</a></li>
                 <li><a href="#/user/{{model.userId}}">Profile</a></li>
                 <li class="active"><a href="#/user/{{model.userId}}/website">News Feed</a></li>
                 <li><a href="#/">Logout</a></li>
