@@ -1,0 +1,189 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#/user/{{model.userId}}/preferences" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
+            <a class="navbar-brand" href="#">CS4450 News Aggregator</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#/login">Login</a></li>
+                <li><a href="#/register">Register</a></li>
+                <li class="active"><a href="#/profile">Profile</a></li>
+                <li><a href="#/user/{{model.userId}}/website">News Feed</a></li>
+                <li><a href="#/">Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<div class="container">
+
+        <div class="page-header">
+            <h1>Your News Sources:</h1>
+            <h4>Uncheck a source to disable it from your feed</h4>
+        </div>
+
+        <div class="alert alert-danger" ng-show="model.error">
+            {{model.error}}
+        </div>
+
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+
+    <form>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search News" ng-model="searchNews">
+            </div>
+        </div>
+    </form>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td>
+                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                    News Source Name
+                    <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                    Description
+                    <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = 'country'; sortReverse = !sortReverse">
+                    Country
+                    <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = 'category'; sortReverse = !sortReverse">
+                    Category
+                    <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = 'language'; sortReverse = !sortReverse">
+                    Languages
+                    <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="news in news | orderBy:sortType:sortReverse | filter:searchNews">
+            <td>
+                <a href={{news.url}}>
+                {{ news.name }}
+                </a>
+            </td>
+            <td>{{ news.description}}</td>
+            <td>{{ news.country }}</td>
+            <td>{{ news.category }}</td>
+            <td>{{ news.language }}</td>
+            <!--<td ng-switch=news.checked>-->
+                <!--<div ng-switch-when="CHECKED">-->
+                    <!--<label class="active">-->
+                        <!--<input class="checkbox" type="checkbox" checked="checked" name="selectedNews">-->
+                    <!--</label>-->
+                <!--</div>-->
+                <!--<div ng-switch-when="UNCHECKED">-->
+                    <!--<label>-->
+                        <!--<input class="checkbox" type="checkbox" name="selectedNews" >-->
+                    <!--</label>-->
+                <!--</div>-->
+            <!--</td>-->
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary  btn-block"
+       data-ng-click="model.updateChecked()">Update Preferences</a>
+    <a class="btn btn-danger  btn-block"
+       data-ng-click="model.resetPreferences()">Reset Preferences</a>
+    <br>
+    <h1></h1>
+
+        <!--<div class="container-fluid">-->
+            <!--<ul class="list-group">-->
+                <!--<li class="list-group-item active">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">-->
+                            <!--News Source Description-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-2 visible-lg">-->
+                            <!--News Source Name-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-2 visible-lg hidden-sm  hidden-xs">-->
+                            <!--Country-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-2 visible-lg hidden-sm  hidden-xs">-->
+                            <!--Category-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-1">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li ng-repeat="news in model.news" class="list-group-item">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">-->
+                                <!--{{news.description}}-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-2 visible-lg">-->
+                            <!--<a href={{news.url}}>-->
+                            <!--{{news.name}}-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-2 hidden-sm  hidden-xs">-->
+                            <!--{{news.country}}-->
+                        <!--</div>-->
+                        <!--<div class="col-md-2 hidden-sm  hidden-xs">-->
+                            <!--{{news.category}}-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-1">-->
+                                <!--<div>-->
+                                    <!--<label>-->
+                                        <!--<input class="checkbox" type="checkbox">-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<a class="btn btn-danger  btn-block"-->
+               <!--ng-click="model.remove()">Remove</a>-->
+            <!--<h1></h1>-->
+        <!--</div>-->
+</div>
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <div class="row navbar-text">
+                    <div class="col-xs-3 text-right">
+                        <a href="#/user/{{model.userId}}">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>

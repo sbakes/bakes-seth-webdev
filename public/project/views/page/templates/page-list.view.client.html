@@ -1,0 +1,104 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#/user/{{model.userId}}/website" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
+            <a class="navbar-brand" href="#">CS4450 News Aggregator</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#/login">Login</a></li>
+                <li><a href="#/register">Register</a></li>
+                <li><a href="#/profile">Profile</a></li>
+                <li class="active"><a href="#/user/{{model.userId}}/website">News Feed</a></li>
+                <li><a href="#/">Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="page-header">
+        <h3 href="{{model.website.url}}"> {{model.website.name}}</h3>
+    </div>
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
+    </div>
+
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm-4 hidden-xs srollable-left">
+            <div class="form-group">
+                <label for="description">Comment</label>
+                <input ng-model="model.page.description"
+                       class="form-control"
+                       id="description"
+                       placeholder="This article is...">
+            </div>
+            <a class="btn btn-primary btn-block"
+               data-ng-click="model.createPage(model.page.description)">Submit</a>
+        </div>
+        <ul class="list-group col-xs-8 col-sm-8">
+            <li class="list-group-item active">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        Comment
+                    </div>
+                    <div class="col-lg-2 visible-lg">
+                        Author
+                    </div>
+                    <div class="col-md-2 hidden-sm  hidden-xs">
+                        Date
+                    </div>
+                    <div class="col-sm-1">
+                    </div>
+
+                </div>
+            </li>
+            <li ng-repeat="page in model.pages" class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-8 col-sm-6">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                            {{page.description}}
+                        </a>
+                    </div>
+                    <div class="col-lg-2 visible-lg">
+                        {{page.author}}
+                    </div>
+                    <div class="col-md-2 hidden-sm  hidden-xs">
+                        {{page.dateCreated | date}}
+                    </div>
+                    <div class="col-sm-1">
+                        <div ng-if=model.canDelete(page.author)>
+                            <div class="col-md-4">
+                                <a data-ng-click="model.deletePage(page._id)" class="navbar-brand glyphicon glyphicon-minus" color="red">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-center">
+                <a href="#/profile/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

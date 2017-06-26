@@ -1,0 +1,60 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">CS4450 News Aggregator</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li class="active"><a href="#/login">Login</a></li>
+                <li><a href="#/register">Register</a></li>
+                <li><a href="#/profile">Profile</a></li>
+                <li><a href="#/user/{{model.userId}}/website">News Feed</a></li>
+                <li><a href="#/">Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container-fluid">
+        <h1>Login</h1>
+
+     <div ng-if="vm.message" class="alert alert-danger">
+         {{vm.message}}
+     </div>
+
+     <label for="username">Username</label>
+
+     <input ng-model="user.username"
+            class="form-control"
+            id="username"
+            type="text"
+            placeholder="bill"/>
+
+     <label for="password">Password</label>
+
+     <input ng-model="user.password"
+            class="form-control"
+            id="password"
+            type="password"
+            placeholder="murray"/>
+
+    <h1></h1>
+
+        <a data-ng-click="vm.login(user)"
+           class="btn btn-primary btn-block">Login</a>
+
+        <a class="btn btn-success btn-block"
+           href="#/register">Register</a>
+
+        <a class="btn btn-danger  btn-block"
+           href="#/">Cancel</a>
+
+     <!-- a href="#/auth/facebook" -->
+ </div>

@@ -25,6 +25,12 @@ module.exports = function(app, models) {
             successRedirect: '/#/user',
             failureRedirect: '/#/login'
         }));
+    app.post('/api/user/userId/:userId/checked', resetChecked);
+    app.post('/api/user/userId/:userId/updateChecked', updateChecked);
+    app.get('/api/countries/', findCountries);
+    app.get('/api/languages/', findLanguages);
+    app.get('/api/categories/', findCategories);
+    app.post('/api/update/', updatePreferences);
 
     //var users = users;
 
@@ -40,6 +46,63 @@ module.exports = function(app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    function updatePreferences(req, res){
+        console.log("in service controller preferences");
+        var preferences = req.body;
+        //console.log(preferences);
+        userModel
+            .updatePreferences(preferences)
+            .then(function(user){
+                console.log(user);
+                res.json(user);
+            }, function(error) {
+                res.sendStatus(404);
+            });
+
+    }
+
+    function findCountries(req, res){
+        //console.log('In Service Server Controller');
+        userModel
+            .findCountries()
+            .then(function(success){
+                console.log(success);
+                console.log("got countries");
+                res.json(success);
+            }, function(error){
+                console.log(error);
+                res.sendStatus(404);
+            })
+    }
+
+    function findLanguages(req, res){
+        //console.log('In Service Server Controller');
+        userModel
+            .findLanguages()
+            .then(function(success){
+                console.log(success);
+                console.log("got languages");
+                res.json(success);
+            }, function(error){
+                console.log(error);
+                res.sendStatus(404);
+            })
+    }
+
+    function findCategories(req, res){
+        //console.log('In Service Server Controller');
+        userModel
+            .findCategories()
+            .then(function(success){
+                console.log(success);
+                console.log("got categories");
+                res.json(success);
+            }, function(error){
+                console.log(error);
+                res.sendStatus(404);
+            })
+    }
 
     function facebookStrategy(token, refreshToken, profile, done) {
         console.log("in facebook strategy");
@@ -97,6 +160,32 @@ module.exports = function(app, models) {
         req.logOut();
         res.send(200);
     }
+
+    function resetChecked(req, res) {
+        console.log("resetting Checks");
+        var userId = req.params.userId;
+        userModel
+            .removeChecks(userId)
+            .then(function(user){
+                res.json(user);
+            }, function(error) {
+                res.sendStatus(404);
+            });
+    }
+
+    function updateChecked(req, res) {
+        console.log("updating Checks");
+        var userId = req.params.userId;
+        var checks = req.params.checks;
+        userModel
+            .updateChecks(userId, checks)
+            .then(function(uuser){
+                res.json(user);
+            }, function(error){
+                res.sendStatus(404);
+            });
+    }
+
 
     function loggedin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');

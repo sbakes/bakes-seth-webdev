@@ -130,10 +130,10 @@
                 templateUrl: "views/widget/templates/widget-flickr-search.view.client.html",
                 controller: "flickrController",
                 controllerAs: "model"
-            })
-            .otherwise({
-                redirectTo: "/login"
             });
+            // .otherwise({
+            //     redirectTo: "/login"
+            // });
 
         function checkLoggedIn(userService, $q, $location, $rootScope) {
             var deferred = $q.defer();

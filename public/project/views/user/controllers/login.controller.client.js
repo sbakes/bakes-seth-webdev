@@ -16,8 +16,12 @@
         function login(user) {
             console.log(user);
 
-            if (user.username.length === undefined ||
-                user.password.length === undefined) {
+            if (user === undefined) {
+                vm.message = 'Please enter username and password';
+            }
+
+            if (user.username === undefined ||
+                user.password === undefined) {
                 vm.message = 'Please enter username and password';
             } else {
                 userService

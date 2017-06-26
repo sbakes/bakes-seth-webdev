@@ -1,0 +1,63 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">CS4450 News Aggregator</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#/login">Login</a></li>
+                <li class="active"><a href="#/register">Register</a></li>
+                <li><a href="#/profile">Profile</a></li>
+                <li><a href="#/user/{{model.userId}}/website">News Feed</a></li>
+                <li><a href="#/">Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+    <div class="container">
+        <h1>Register</h1>
+
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
+    </div>
+
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+
+        <input for="username"
+               type="text"
+               class="form-control"
+               ng-model="user.username"
+               id="username"
+               placeholder="username"/>
+
+        <input for="password"
+               type="password"
+               class="form-control"
+               ng-model="user.password"
+               id="password"
+               placeholder="password"/>
+
+        <input for="password2"
+               type="password"
+               class="form-control"
+               ng-model="password2"
+               id="password2"
+               placeholder="very password"/>
+
+        <h1></h1>
+
+        <a class="btn btn-primary btn-block"
+           data-ng-click="model.register(user.username, user.password, password2)">Register</a>
+
+        <a class="btn btn-danger  btn-block"
+           href="#/">Cancel</a>
+    </div>
