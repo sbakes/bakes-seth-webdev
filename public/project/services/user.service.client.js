@@ -21,9 +21,16 @@
             findAllCountries: findAllCountries,
             findAllLanguages: findAllLanguages,
             findAllCategories: findAllCategories,
-            updatePreferences: updatePreferences
+            updatePreferences: updatePreferences,
+            findAllUsers: findAllUsers
         };
         return api;
+
+        function findAllUsers(){
+            console.log("finding users");
+            var url = "/api/admin";
+            return $http.get(url);
+        }
 
         function updatePreferences(userId, language, category, country) {
             console.log("updating preferences");

@@ -27,7 +27,7 @@
 <div class="container">
 
         <div class="page-header">
-            <h1>Your Comments:</h1>
+            <h1>Registered Users:</h1>
         </div>
 
         <div class="alert alert-danger" ng-show="model.error">
@@ -42,7 +42,7 @@
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                <input type="text" class="form-control" placeholder="Search Past Comments" ng-model="searchNews">
+                <input type="text" class="form-control" placeholder="Search Users" ng-model="searchNews">
             </div>
         </div>
     </form>
@@ -52,30 +52,41 @@
         <thead>
         <tr>
             <td>
-                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = 'description'; sortReverse = !sortReverse">
-                    Comment
+                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = 'username'; sortReverse = !sortReverse">
+                    Username
                     <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </td>
             <td>
-                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = 'dateCreated'; sortReverse = !sortReverse">
-                    Time
+                <a href="#/user/{{model.userId}}/sources" ng-click="sortType = '_id'; sortReverse = !sortReverse">
+                    Id
                     <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
+            </td>
+            <td>
+                Delete
             </td>
         </tr>
         </thead>
 
         <tbody>
-        <tr ng-repeat="comment in pastComments | orderBy:sortType:sortReverse | filter:searchNews">
+        <tr ng-repeat="user in users | orderBy:sortType:sortReverse | filter:searchNews">
             <td>
-                <a href="#/user/{{model.userId}}/website/{{comment.websiteId}}/page">
-                {{ comment.description}}
+                <a>
+                {{user.username}}
                 </a>
             </td>
-            <td>{{ comment.dateCreated}}</td>
+            <td>{{user._id}}</td>
+            <td>
+                <div ng-if=model.notUser(user.username)>
+                    <div class="col-md-4">
+                        <a data-ng-click="model.deleteUser(user._id)" class="navbar-brand glyphicon glyphicon-minus" color="red">
+                        </a>
+                    </div>
+                </div>
+            </td>
             <!--<td ng-switch=news.checked>-->
                 <!--<div ng-switch-when="CHECKED">-->
                     <!--<label class="active">-->

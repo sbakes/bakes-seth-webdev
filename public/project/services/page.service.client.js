@@ -18,10 +18,11 @@
 
         function findPageByAuthorId(username, userId){
             //console.log(userId);
+            console.log(username);
             //console.log("username in pageContorller: " + username);
-            var url = "/api/page/user/" + userId;
-            return $http.get(url, username);
+            var url = "/api/author/" + username + "/";
             console.log(url);
+            return $http.get(url, username);
         }
 
         function createPage(websiteId, page) {

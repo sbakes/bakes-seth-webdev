@@ -31,6 +31,7 @@ module.exports = function(app, models) {
     app.get('/api/languages/', findLanguages);
     app.get('/api/categories/', findCategories);
     app.post('/api/update/', updatePreferences);
+    app.get('/api/admin/', getAllUsers);
 
     //var users = users;
 
@@ -46,6 +47,18 @@ module.exports = function(app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    function getAllUsers(req, res){
+        console.log("getting all users in service controller");
+        userModel
+            .getAllUsers()
+            .then(function(users){
+                //console.log(users);
+                res.json(users);
+            }, function(error){
+                res.sendStatus(400);
+            })
+    }
 
     function updatePreferences(req, res){
         console.log("in service controller preferences");

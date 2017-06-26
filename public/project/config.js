@@ -39,6 +39,11 @@
                 controller: 'profileController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/adminPortal', {
+                templateUrl: 'views/user/templates/adminPortal.html',
+                controller: 'profileController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId/sources', {
                 templateUrl: 'views/user/templates/sources.html',
                 controller: 'websiteListController',

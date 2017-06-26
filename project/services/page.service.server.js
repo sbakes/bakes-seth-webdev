@@ -4,7 +4,7 @@ module.exports = function (app, model) {
     app.get('/api/page/:pageId', findPageById);
     app.put('/api/page/:pageId', updatePage);
     app.delete('/api/page/:pageId', deletePage);
-    app.get('/api/page/user/:userId', findPageByAuthorId);
+    app.get('/api/author/:username', findPageByAuthorId);
 
     var pageModel = model.pageModel;
 
@@ -17,15 +17,14 @@ module.exports = function (app, model) {
     //     ];
 
     function findPageByAuthorId(req, res){
-        var username = req.body;
-        console.log(username);
-        console.log(req.params.userId);
-        console.log("-------");
+        //console.log(req.params.userId);
+        var username = req.params.username;
+        //console.log("-------");
         pageModel
             .findPageByAuthorId(username)
             .then(function(success){
                 console.log(success);
-                res.send(success);
+                res.json(success);
             }, function(error){
                 res.status(400);
             })

@@ -20,6 +20,7 @@ module.exports = function () {
     language.findLanguages = findLanguages;
     category.findCategories = findCategories;
     user.updatePreferences = updatePreferences;
+    user.getAllUsers = getAllUsers;
 
     var api = {
         createUser: createUser,
@@ -35,6 +36,7 @@ module.exports = function () {
         findLanguages: findLanguages,
         findCategories: findCategories,
         updatePreferences: updatePreferences,
+        getAllUsers: getAllUsers
     };
     return api;
 
@@ -45,6 +47,10 @@ module.exports = function () {
     //     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
     //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
     // ];
+
+    function getAllUsers(){
+        return user.find({});
+    }
 
     function updatePreferences(preferences){
         console.log("Updating Preferences");

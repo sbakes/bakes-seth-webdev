@@ -110,10 +110,10 @@
             pageService
                 .deletePage(pageId)
                 .then(function(){
-                    model.message = "Successfully deleted page";
+                    model.message = "Successfully deleted comment";
                     $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
                 }, function(){
-                    model.error = "Unable to delete page";
+                    model.error = "Unable to delete comment";
                 });
             init();
         }

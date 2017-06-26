@@ -74,6 +74,9 @@
            href="#/user/{{model.userId}}/preferences">News Preferences</a>
         <a class="btn btn-success btn-block"
            data-ng-click="model.update(user)">Update</a>
+        <a ng-if="model.isAdmin()" class="btn btn-warning  btn-block"
+           data-ng-click="model.adminPortal()"
+           href="#/user/{{model.userId}}/adminPortal">Admin Portal</a>
         <a class="btn btn-danger  btn-block"
            href="#/login">Logout</a>
     </div>
