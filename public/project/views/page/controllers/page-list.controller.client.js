@@ -58,6 +58,8 @@
                 console.log("triggered");
                 return true;
             } else if (commentAuthor === model.user) {
+                console.log("triggered");
+                return true;
             } else {
                 return false;
             }
@@ -65,6 +67,8 @@
 
         // implementation
         function createPage(pageDescription) {
+
+            console.log(pageDescription);
 
             if (pageDescription === undefined) {
                 //console.log("no name found");

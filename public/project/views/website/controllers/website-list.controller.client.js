@@ -11,6 +11,7 @@
         //model.updateChecked = updateChecked();
         //model.websites = websites;
         //model.updatePreferences = updatePreferences();
+        model.isAnon = isAnon;
 
         function init() {
             console.log(model.userId);
@@ -67,7 +68,7 @@
             userService
                 .findUserById(model.userId)
                 .then(function(user){
-                    console.log(user.data);
+                    //console.log(user.data);
                     var preferences = {
                         language: user.data.languages,
                         category: user.data.categories,
@@ -83,6 +84,28 @@
                 }, function(error) {
                     console.log("Error grabbing preferences");
                 });
+
+            if(isAnon()){
+                userService
+                    .findUserByUsername("anon")
+                    .then(function(user){
+                        //console.log(user.data);
+                        var preferences = {
+                            language: user.data.languages,
+                            category: user.data.categories,
+                            country: user.data.countries
+                        };
+                        $scope.preferences = preferences;
+                        $scope.CountrySelection = $scope.preferences.country;
+                        $scope.LanguageSelection = $scope.preferences.language;
+                        $scope.CategorySelection = $scope.preferences.category;
+                        //console.log($scope.preferences);
+                        collectCategories();
+
+                    }, function(error) {
+                        console.log("Error grabbing preferences");
+                    });
+            }
             // websiteService
             //     .findAllWebsitesForUser(model.userId)
             //     .then(function(websites){
@@ -99,6 +122,15 @@
             //console.log(model.websites);
         }
         init();
+
+        function isAnon(){
+            if(model.userId === undefined){
+                model.message = "Register to save news preferences and comment";
+                return true;
+            } else {
+                return false;
+            }
+        }
 
         function collectArticles(){
             var sources = $scope.news;

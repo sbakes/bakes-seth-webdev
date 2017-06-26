@@ -29,6 +29,7 @@
             }
 
             var userNew = {
+                admin: "FALSE",
                 username: username,
                 password: password,
                 firstName: "temp",

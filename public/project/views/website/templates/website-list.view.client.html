@@ -7,10 +7,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#/user/{{model.userId}}/" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
-            <a class="navbar-brand" href="#">CS4450 News Aggregator</a>
+            <a href="#/user/{{model.userId}}/" class="navbar-brand glyphicon glyphicon-chevron-left" ng-if="!model.isAnon()"></a>
+            <a href="#/" class="navbar-brand glyphicon glyphicon-chevron-left" ng-if="model.isAnon()"></a>
+            <a class="navbar-brand" href="#">CS4450 News Aggregator </a>
+            <a class="navbar-brand" href="#/user/" ng-if="model.isAnon()"> Register</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse" ng-if="!model.isAnon()">
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
                 <li><a href="#/login">Login</a></li>
@@ -71,14 +73,14 @@
                 <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
             </a>
         </td>
-        <td>
+        <td >
             <a href="#/user/{{model.userId}}/website" ng-click="sortType = 'publishedAt'; sortReverse = !sortReverse">
                 Publish Date
                 <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
                 <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
             </a>
         </td>
-        <td>
+        <td ng-if="!model.isAnon()">
             Comment
         </td>
     </tr>
@@ -94,7 +96,7 @@
         <td>{{ news.author }}</td>
         <td>{{ news.source}}</td>
         <td>{{ news.publishedAt }}</td>
-        <td>
+        <td ng-if="!model.isAnon()">
             <div class="col-md-4">
                 <a data-ng-click="model.createCommentPage(news._id, news.title, news.url)" class="navbar-brand glyphicon glyphicon-comment">
                 </a>
